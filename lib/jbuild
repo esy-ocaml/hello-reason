@@ -1,0 +1,6 @@
+(jbuild_version 1)
+
+(library
+ ((name lib)
+  (public_name esy-reason-project)
+  (libraries (lambda-term lwt))))

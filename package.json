@@ -1,0 +1,29 @@
+{
+  "name": "esy-reason-project",
+  "version": "0.1.0",
+  "description": "Reason workflow with Esy",
+  "license": "MIT",
+  "esy": {
+    "build": [
+      [
+        "make",
+        "esy-install"
+      ]
+    ],
+    "buildsInSource": true
+  },
+  "dependencies": {
+    "@esy-ocaml/esy-installer": "^0.0.0",
+    "@opam/jbuilder": "^1.0.0-beta14",
+    "@opam/lambda-term": "^1.11.0",
+    "@opam/lwt": "^3.1.0",
+    "@opam/merlin": "^3.0.3",
+    "@opam/reason": "facebook/reason#master"
+  },
+  "peerDependencies": {
+    "ocaml": "~4.2.3000"
+  },
+  "devDependencies": {
+    "ocaml": "~4.2.3000"
+  }
+}
