@@ -10,4 +10,4 @@ install:
 - esy install
 script:
 - esy build
-- esy ./_esyinstall/bin/hello
+- esy ./_build/default/bin/hello.exe
