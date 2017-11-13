@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "A simpler Reason script",
   "esy": {
-    "build": "reason-script-run"
+    "build": "reason-script-run",
+    "main": "HelloWorld.exe"
   },
   "dependencies": {
     "reason-script-run": "*",
