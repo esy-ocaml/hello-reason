@@ -1,22 +1,15 @@
 {
-  "name": "esy-reason-project",
+  "name": "reason-script",
   "version": "0.1.0",
-  "description": "Reason workflow with Esy",
-  "license": "MIT",
+  "description": "A simpler Reason script",
   "esy": {
-    "build":  [
-      ["refmterr", "jbuilder", "build"]
-    ],
-    "install": [
-      "esy-installer"
-    ],
+    "build": "refmterr jbuilder build",
+    "install": "esy-installer",
     "buildsInSource": "_build"
   },
   "dependencies": {
     "@esy-ocaml/esy-installer": "^0.0.0",
     "@opam/jbuilder": "^1.0.0-beta14",
-    "@opam/lambda-term": "^1.11.0",
-    "@opam/lwt": "^3.1.0",
     "@opam/reason": "^3.0.0",
     "refmterr": "^3.0.4"
   },
@@ -24,7 +17,6 @@
     "ocaml": "~4.2.3000"
   },
   "devDependencies": {
-    "@opam/merlin": "^3.0.3",
     "ocaml": "~4.2.3000"
   }
 }

@@ -10,3 +10,5 @@ _release
 *.native
 esy-reason-project.install
 .DS_Store
+*.lock
+reason-script.install

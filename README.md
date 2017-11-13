@@ -9,32 +9,26 @@ A project which demonstrates a Reason workflow with [Esy][].
 
 ## Usage
 
-You need Esy, you can install the beta using [npm][]:
-
     % npm install -g esy
-
-Then you can install the project dependencies using:
-
     % esy install
-
-Then build the project dependencies along with the project itself:
-
     % esy build
+    % _build/default/HelloWorld.exe
 
-Now you can run your editor within the environment (which also includes merlin):
+
+## Editing The Scripts:
+
+You can run your editor within the environment (which also includes merlin):
 
     % esy $EDITOR
     % esy vim
 
-After you make some changes to source code, you can re-run project's build
-using:
 
-    % esy build
+## Coming Soon
 
-And test compiled executable:
+This workflow is coming soon to `esy`.
 
-    % esy ./_build/default/bin/hello.exe
 
-Shell into environment:
+    % esx HelloWorld.exe
 
-    % esy shell
+This will do whatever it takes to run your script, including downloading
+dependencies, building them, and compiling your scripts.
