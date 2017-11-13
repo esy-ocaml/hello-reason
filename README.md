@@ -1,25 +1,10 @@
-# esy-reason-project
+# esy-reason-project (aspirational)
 
-[![Build Status](https://travis-ci.org/esy-ocaml/esy-reason-project.svg?branch=master)](https://travis-ci.org/esy-ocaml/esy-reason-project)
-
-A project which demonstrates a Reason workflow with [Esy][].
+Demonstrates ideal scripts use case for Reason.
 
 [Esy]: https://github.com/esy-ocaml/esy
 
-
-## Usage
-
-    % npm install -g esy
-    % esy install
-    % esy build
-    % _build/default/HelloWorld.exe
-
-
-## Coming Soon
-
-Instead of the install process above, the following workflow is coming soon to
-`esy`.
-
+Clone and run the following:
 
     % esx HelloWorld.exe
 
