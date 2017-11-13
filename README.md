@@ -5,7 +5,7 @@
 A project which demonstrates a Reason workflow with [Esy][].
 
 [Esy]: https://github.com/esy-ocaml/esy
-[npm]: https://www.npmjs.com
+
 
 ## Usage
 

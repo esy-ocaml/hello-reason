@@ -10,3 +10,4 @@ _release
 *.native
 esy.lock
 esy-reason-project.install
+.DS_Store
