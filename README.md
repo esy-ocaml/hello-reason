@@ -11,7 +11,7 @@ A project which demonstrates a Reason workflow with [Esy][].
 
 You need Esy, you can install the beta using [npm][]:
 
-    % npm install -g esy@next
+    % npm install -g esy@latest
 
 Then you can install the project dependencies using:
 
