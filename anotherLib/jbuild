@@ -1,0 +1,7 @@
+(jbuild_version 1)
+
+(library
+ ((name AnotherEsyReasonProject)
+  (flags (-w -40 -w +26))
+  (public_name esy-reason-project.another)
+  (libraries (esy-peasy-starter lwt))))

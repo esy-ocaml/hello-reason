@@ -1,6 +1,7 @@
 open Lwt;
 
 let hello = () => Lwt.return(print_string("In EsyReasonProject hello"));
+let hello = () => AnotherEsyReasonProject.Helper.hello();
 
 let s = EsyPeasyStarterLib.Util.utilValueString;
 

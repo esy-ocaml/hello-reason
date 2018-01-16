@@ -1,7 +1,7 @@
 (jbuild_version 1)
 
 (library
- ((name lib)
+ ((name EsyReasonProject)
   (flags (-w -40 -w +26))
   (public_name esy-reason-project)
-  (libraries (lambda-term lwt))))
+  (libraries (esy-peasy-starter lwt esy-reason-project.another))))

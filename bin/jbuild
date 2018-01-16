@@ -3,4 +3,4 @@
 (executable
  ((name Hello)
   (public_name Hello)
-  (libraries (lib))))
+  (libraries (js_of_ocaml-lwt lwt lwt.unix esy-peasy-starter esy-reason-project esy-reason-project.another))))

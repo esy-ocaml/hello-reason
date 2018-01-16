@@ -5,7 +5,7 @@
   "license": "MIT",
   "esy": {
     "build": [
-      ["refmterr", "jbuilder", "build"]
+      ["refmterr", "jbuilder", "build", "--dev", "bin/Hello.bc.js"]
     ],
     "install": [
       "esy-installer"
@@ -13,12 +13,15 @@
     "buildsInSource": "_build"
   },
   "dependencies": {
-    "@esy-ocaml/esy-installer": "^0.0.0",
-    "@opam/jbuilder": "^1.0.0-beta14",
-    "@opam/lambda-term": "^1.11.0",
+    "@opam/reason": "^3.0.0",
+    "esy-peasy": "*",
+    "refmterr": "^3.0.4",
     "@opam/lwt": "^3.1.0",
     "@opam/reason": "^3.0.0",
-    "refmterr": "^3.0.4"
+    "@opam/js_of_ocaml-ppx": "*",
+    "@opam/js_of_ocaml-compiler": "*",
+    "@opam/js_of_ocaml-lwt": "*",
+    "esy-peasy-starter": "jordwalke/esy-peasy-starter#06000d27346e0b58e2d13b45d2cd1b63bc33acfb"
   },
   "peerDependencies": {
     "ocaml": "~4.6.0"
