@@ -3,4 +3,4 @@
 (executable
  ((name Hello)
   (public_name Hello)
-  (libraries (lib))))
+  (libraries (lib lib2))))
