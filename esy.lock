@@ -6,9 +6,9 @@
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/@esy-ocaml/esy-installer/-/esy-installer-0.0.0.tgz#6b0e2bd4ee43531ac74793fe55cfcc3aca197a66"
 
-"@esy-ocaml/merlin@*":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/@esy-ocaml/merlin/-/merlin-3.0.5.tgz#f1459f159f56fb0dd73e64b77ed432b1d3d15bd7"
+"@esy-ocaml/merlin@3.0.5003":
+  version "3.0.5003"
+  resolved "https://registry.yarnpkg.com/@esy-ocaml/merlin/-/merlin-3.0.5003.tgz#4b3d68a7ddef3051f1b05fdb5b2f69d5791034d3"
   dependencies:
     "@esy-ocaml/esy-installer" "^0.0.0"
     "@esy-ocaml/substs" "^0.0.1"
@@ -159,7 +159,7 @@
   peerDependencies:
     ocaml " >= 4.2.3000"
 
-"@opam/lambda-term@ >= 1.2.0", "@opam/lambda-term@^1.11.0":
+"@opam/lambda-term@ >= 1.2.0":
   version "1.12.0"
   uid "472857378659d1a1599183ff632c0797"
   resolved "@opam/lambda-term@1.12.0-472857378659d1a1599183ff632c0797.tgz"
@@ -175,7 +175,7 @@
   peerDependencies:
     ocaml " >= 4.2.3000"
 
-"@opam/lwt@ >= 2.7.0", "@opam/lwt@ >= 3.0.0", "@opam/lwt@*", "@opam/lwt@^3.1.0":
+"@opam/lwt@ >= 2.7.0", "@opam/lwt@ >= 3.0.0", "@opam/lwt@*":
   version "3.2.1"
   uid "0dc31662087c7ed246f43c4c81ce681e"
   resolved "@opam/lwt@3.2.1-0dc31662087c7ed246f43c4c81ce681e.tgz"

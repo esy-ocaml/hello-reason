@@ -25,7 +25,7 @@
     "ocaml": "~4.6.0"
   },
   "devDependencies": {
-    "@esy-ocaml/merlin": "*",
+    "@esy-ocaml/merlin": "3.0.5003",
     "ocaml": "~4.6.0"
   }
 }
