@@ -6,8 +6,8 @@ os:
 - linux
 - osx
 install:
-- npm install --global esy
-- esy install
+- npm install --global esy@preview
+- esyi
 script:
 - esy build
 - esy ./_build/default/bin/Hello.exe
