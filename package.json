@@ -17,7 +17,7 @@
     "buildsInSource": "_build"
   },
   "resolutions": {
-    "**/@opam/lwt": "3.3.0"
+    "**/@opam/lwt": "4.0.0"
   },
   "dependencies": {
     "@esy-ocaml/esy-installer": "^0.0.0",
