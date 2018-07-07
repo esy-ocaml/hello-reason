@@ -1,8 +1,8 @@
-# esy-reason-project
+# Reason Binary Tree Fork/Join Example.
 
-[![Build Status](https://travis-ci.org/esy-ocaml/esy-reason-project.svg?branch=master)](https://travis-ci.org/esy-ocaml/esy-reason-project)
+Small Reason example project that uses Fork/Join to break up a large computation.
 
-A project which demonstrates a Reason workflow with [Esy][].
+Source derived from [this example project](https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/binarytrees-ocaml-2.html)
 
 [Esy]: https://github.com/esy-ocaml/esy
 
@@ -11,7 +11,7 @@ A project which demonstrates a Reason workflow with [Esy][].
 
 You need Esy, you can install the beta using [npm][]:
 
-    % npm install -g esy@latest
+    % npm install -g esy@preview
 
 Then you can install the project dependencies using:
 
@@ -21,20 +21,13 @@ Then build the project dependencies along with the project itself:
 
     % esy build
 
-Now you can run your editor within the environment (which also includes merlin):
+And test compiled executable: `esy x` lets you run built binaries by name.
 
-    % esy $EDITOR
-    % esy vim
+    % esy x Test.exe
 
-After you make some changes to source code, you can re-run project's build
-using:
+Timing:
 
-    % esy build
+You can use `time` from the command line. This also includes the time it takes
+to startup the app. Make sure the `time` command is inside the `esy x` command.
 
-And test compiled executable:
-
-    % esy ./_build/default/bin/hello.exe
-
-Shell into environment:
-
-    % esy shell
+    % esy x time Test.exe
