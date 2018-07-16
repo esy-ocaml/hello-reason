@@ -6,7 +6,7 @@ os:
 - linux
 - osx
 install:
-- npm install --global esy@preview
+- npm install --global esy@0.1.31
 - esyi
 script:
 - esy build
