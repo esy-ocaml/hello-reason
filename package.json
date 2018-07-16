@@ -7,7 +7,7 @@
     "build": [
       [
         "refmterr",
-        "jbuilder",
+        "dune",
         "build"
       ]
     ],
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@esy-ocaml/esy-installer": "*",
-    "@opam/jbuilder": "*",
+    "@opam/dune": "*",
     "@opam/lambda-term": "*",
     "@opam/lwt": "*",
     "@esy-ocaml/reason": "*",
