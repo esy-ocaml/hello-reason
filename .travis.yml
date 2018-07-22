@@ -6,8 +6,14 @@ os:
 - linux
 - osx
 install:
-- npm install --global esy
+- npm install --global esy@latest
 - esy install
 script:
+- esy build
+- esy ./_build/default/bin/Hello.exe
+- rm -rf ./_build
+- npm remove --global esy
+- npm install --global esy@preview
+- esy install
 - esy build
 - esy ./_build/default/bin/Hello.exe
