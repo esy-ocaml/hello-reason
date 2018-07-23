@@ -1,6 +1,6 @@
-# esy-reason-project
+# hello-reason
 
-[![Build Status](https://travis-ci.org/esy-ocaml/esy-reason-project.svg?branch=master)](https://travis-ci.org/esy-ocaml/esy-reason-project)
+[![Build Status](https://travis-ci.org/esy-ocaml/hello-reason.svg?branch=master)](https://travis-ci.org/esy-ocaml/hello-reason)
 
 A project which demonstrates a Reason workflow with [Esy][].
 

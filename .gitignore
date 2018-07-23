@@ -8,5 +8,5 @@ _esyinstall
 _release
 *.byte
 *.native
-esy-reason-project.install
+*.install
 .DS_Store
