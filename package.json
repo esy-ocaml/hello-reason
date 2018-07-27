@@ -28,10 +28,9 @@
     "refmterr": "^3.0.4"
   },
   "peerDependencies": {
-    "ocaml": "~4.6.0"
+    "ocaml": "esy-ocaml/ocaml#6aacc05"
   },
   "devDependencies": {
-    "@esy-ocaml/merlin": "*",
-    "ocaml": "~4.6.0"
+    "ocaml": "esy-ocaml/ocaml#6aacc05"
   }
 }
