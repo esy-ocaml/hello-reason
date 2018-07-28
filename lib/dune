@@ -1,5 +1,5 @@
 (library
   (name lib)
   (flags (-w -40 -w +26))
-  (public_name esy-reason-project)
+  (public_name hello-reason)
   (libraries lambda-term lwt))

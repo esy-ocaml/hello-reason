@@ -1,27 +1,12 @@
 {
-  "name": "esy-reason-project",
+  "name": "hello-reason",
   "version": "0.1.0",
   "description": "Reason workflow with Esy",
   "license": "MIT",
   "esy": {
-    "build": [
-      [
-        "refmterr",
-        "dune",
-        "build"
-      ]
-    ],
-    "install": [
-      "esy-installer"
-    ],
-    "buildsInSource": "_build"
-  },
-  "resolutions": {
-    "**/@opam/result": "1.2",
-    "**/@opam/merlin-extend": "0.3"
+    "build": "refmterr dune build"
   },
   "dependencies": {
-    "@esy-ocaml/esy-installer": "*",
     "@opam/dune": "*",
     "@opam/lambda-term": "*",
     "@opam/lwt": "*",
