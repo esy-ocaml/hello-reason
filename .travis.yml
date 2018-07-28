@@ -1,14 +1,12 @@
 language: node_js
 node_js:
-- 6
 - 8
 os:
 - linux
 - osx
-install:
+script:
 - npm install --global esy@latest
 - esy install
-script:
 - esy build
 - esy ./_build/default/bin/Hello.exe
 - rm -rf ./_build
