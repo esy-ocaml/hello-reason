@@ -4,6 +4,7 @@ node_js:
 os:
 - linux
 - osx
+install: []
 script:
 - npm install --global esy@latest
 - esy install
