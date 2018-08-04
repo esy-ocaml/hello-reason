@@ -4,14 +4,18 @@
   "description": "Reason workflow with Esy",
   "license": "MIT",
   "esy": {
-    "build": "refmterr dune build",
-
+    "build": "refmterr dune build -p #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
-     "releasedBinaries": [ "Hello.exe" ],
-      "deleteFromBinaryRelease": ["*esy_ocaml_*", "*refmterr-*", "ocaml-*"]
+      "releasedBinaries": [
+        "Hello.exe"
+      ],
+      "deleteFromBinaryRelease": [
+        "*esy_ocaml_*",
+        "*refmterr-*",
+        "ocaml-*"
+      ]
     }
-
   },
   "dependencies": {
     "@opam/dune": "*",
