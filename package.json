@@ -25,9 +25,9 @@
     "refmterr": "^3.0.4"
   },
   "peerDependencies": {
-    "ocaml": "esy-ocaml/ocaml#6aacc05"
+    "ocaml": "bryphe/ocaml#8db025dce"
   },
   "devDependencies": {
-    "ocaml": "esy-ocaml/ocaml#6aacc05"
+    "ocaml": "bryphe/ocaml#8db025dce"
   }
 }
