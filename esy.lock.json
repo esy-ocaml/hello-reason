@@ -412,13 +412,24 @@
           "archive:https://opam.ocaml.org/archives/lambda-term.1.13+opam.tar.gz#md5:4d012fe08f3698ac3113909ba7269812",
           "archive:https://github.com/diml/lambda-term/releases/download/1.13/lambda-term-1.13.tbz#md5:c13826a97014d4d573b927b623c7e043"
         ],
-        "files": [],
+        "files": [
+          {
+            "name": "_esy/lambda-term-1.13.patch",
+            "content":
+              "--- ./src/lTerm_windows_stubs.c\n+++ ./src/lTerm_windows_stubs.c\n@@ -16,7 +16,6 @@\n \n #if defined(_WIN32) || defined(_WIN64)\n \n-#include <windows.h>\n #include <lwt_unix.h>\n \n /* +-----------------------------------------------------------------+\n@@ -140,15 +139,7 @@\n   }\n }\n \n-CAMLprim value lt_windows_read_console_input_job(value val_fd)\n-{\n-  LWT_UNIX_INIT_JOB(job, read_console_input, 0);\n-  job->handle = Handle_val(val_fd);\n-  job->error_code = 0;\n-  CAMLreturn(lwt_unix_alloc_job(&(job->job)));\n-}\n-\n-static value result_read_console_input_result(struct job_read_console_input *job)\n+static value result_read_console_input(struct job_read_console_input *job)\n {\n   INPUT_RECORD input;\n   DWORD cks, bs;\n@@ -163,23 +154,23 @@\n     win32_maperr(error_code);\n     uerror(\"ReadConsoleInput\", Nothing);\n   }\n-  switch (input->EventType) {\n+  switch (input.EventType) {\n   case KEY_EVENT: {\n     result = caml_alloc(1, 0);\n     x = caml_alloc_tuple(4);\n     Field(result, 0) = x;\n-    cks = input->Event.KeyEvent.dwControlKeyState;\n+    cks = input.Event.KeyEvent.dwControlKeyState;\n     Field(x, 0) = Val_bool((cks & LEFT_CTRL_PRESSED) | (cks & RIGHT_CTRL_PRESSED));\n     Field(x, 1) = Val_bool((cks & LEFT_ALT_PRESSED) | (cks & RIGHT_ALT_PRESSED));\n     Field(x, 2) = Val_bool(cks & SHIFT_PRESSED);\n-    code = input->Event.KeyEvent.wVirtualKeyCode;\n+    code = input.Event.KeyEvent.wVirtualKeyCode;\n     for (i = 0; i < sizeof(code_table)/sizeof(code_table[0]); i++)\n       if (code == code_table[i]) {\n         Field(x, 3) = Val_int(i);\n         CAMLreturn(result);\n       }\n     y = caml_alloc_tuple(1);\n-    Field(y, 0) = Val_int(input->Event.KeyEvent.uChar.UnicodeChar);\n+    Field(y, 0) = Val_int(input.Event.KeyEvent.uChar.UnicodeChar);\n     Field(x, 3) = y;\n     CAMLreturn(result);\n   }\n@@ -187,13 +178,13 @@\n     result = caml_alloc(1, 1);\n     x = caml_alloc_tuple(6);\n     Field(result, 0) = x;\n-    cks = input->Event.MouseEvent.dwControlKeyState;\n+    cks = input.Event.MouseEvent.dwControlKeyState;\n     Field(x, 0) = Val_bool((cks & LEFT_CTRL_PRESSED) | (cks & RIGHT_CTRL_PRESSED));\n     Field(x, 1) = Val_bool((cks & LEFT_ALT_PRESSED) | (cks & RIGHT_ALT_PRESSED));\n     Field(x, 2) = Val_bool(cks & SHIFT_PRESSED);\n-    Field(x, 4) = Val_int(input->Event.MouseEvent.dwMousePosition.Y);\n-    Field(x, 5) = Val_int(input->Event.MouseEvent.dwMousePosition.X);\n-    bs = input->Event.MouseEvent.dwButtonState;\n+    Field(x, 4) = Val_int(input.Event.MouseEvent.dwMousePosition.Y);\n+    Field(x, 5) = Val_int(input.Event.MouseEvent.dwMousePosition.X);\n+    bs = input.Event.MouseEvent.dwButtonState;\n     if (bs & FROM_LEFT_1ST_BUTTON_PRESSED)\n       Field(x, 3) = Val_int(0);\n     else if (bs & FROM_LEFT_2ND_BUTTON_PRESSED)\n@@ -212,6 +203,14 @@\n   CAMLreturn(Val_int(0));\n }\n \n+CAMLprim value lt_windows_read_console_input_job(value val_fd)\n+{\n+  LWT_UNIX_INIT_JOB(job, read_console_input, 0);\n+  job->handle = Handle_val(val_fd);\n+  job->error_code = 0;\n+  return (lwt_unix_alloc_job(&(job->job)));\n+}\n+\n /* +-----------------------------------------------------------------+\n    | Console informations                                            |\n    +-----------------------------------------------------------------+ */\n"
+          }
+        ],
         "opam": {
           "name": "lambda-term",
           "version": "1.13",
           "opam":
             "opam-version: \"1.2\"\nname: \"lambda-term\"\nversion: \"1.13\"\nmaintainer: \"jeremie@dimino.org\"\nauthors: \"Jérémie Dimino\"\nlicense: \"BSD3\"\nhomepage: \"https://github.com/diml/lambda-term\"\nbug-reports: \"https://github.com/diml/lambda-term/issues\"\ndepends: [\n  \"lwt\" {>= \"2.7.0\"}\n  \"lwt_log\"\n  \"react\"\n  \"zed\" {>= \"1.2\"}\n  \"camomile\" {>= \"0.8.6\"}\n  \"lwt_react\"\n  \"jbuilder\" {build & >= \"1.0+beta9\"}\n]\navailable: ocaml-version >= \"4.02.3\"\nbuild: [\n  [\"jbuilder\" \"subst\" \"-p\" name] {pinned}\n  [\"jbuilder\" \"build\" \"-p\" name \"-j\" jobs]\n]\nrun-test: [\"jbuilder\" \"runtest\" \"-p\" name \"-j\" jobs]\ndev-repo: \"git://github.com/diml/lambda-term.git\"",
-          "override": null
+          "override": {
+            "build": [
+              [ "bash", "-c", "patch -p1 < _esy/lambda-term-1.13.patch" ],
+              [ "jbuilder", "build", "-p", "lambda-term", "-j", "4" ]
+            ]
+          }
         }
       },
       "dependencies": [
