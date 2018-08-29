@@ -24,6 +24,9 @@
     "@esy-ocaml/reason": "^3.0.0",
     "refmterr": "^3.0.4"
   },
+  "resolutions": {
+    "@opam/menhir": "20170712"
+  },
   "peerDependencies": {
     "ocaml": "~4.6.0"
   },
