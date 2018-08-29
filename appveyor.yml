@@ -1,7 +1,12 @@
 platform:
     - x64
 
+# Workaround for esy/esy#388
+environment:
+    HOME: C:/Users/appveyor
+
 install:
+    # The x64 is required as a workaround for esy/esy#412
     - ps: Install-Product node 8 x64
     - npm install -g esy@0.2.9
     - appveyor-retry esy install
