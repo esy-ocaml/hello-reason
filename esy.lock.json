@@ -1,5 +1,5 @@
 {
-  "hash": "db882849034b3595ee75cbe8b668c970",
+  "hash": "b27004796345e2d63431fd239a1f6508",
   "root": "hello-reason@path:.",
   "node": {
     "refmterr@3.1.7": {
@@ -36,9 +36,9 @@
         "opam": null
       },
       "dependencies": [
-        "@esy-ocaml/esy-installer@0.0.0", "@esy-ocaml/reason@3.3.3",
-        "@opam/dune@opam:1.1.1", "@opam/lambda-term@opam:1.13",
-        "@opam/lwt@opam:4.1.0", "ocaml@4.6.5", "refmterr@3.1.7"
+        "@esy-ocaml/reason@3.3.3", "@opam/dune@opam:1.1.1",
+        "@opam/lambda-term@opam:1.13", "@opam/lwt@opam:4.1.0", "ocaml@4.6.5",
+        "refmterr@3.1.7"
       ]
     },
     "@opam/zed@opam:1.6": {

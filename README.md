@@ -38,3 +38,13 @@ And test compiled executable:
 Shell into environment:
 
     % esy shell
+
+
+## Create Prebuilt Release:
+
+`esy` allows creating prebuilt binary packages for your current platform, with
+no dependencies.
+
+    % esy release
+    % cd _release
+    % npm publish
