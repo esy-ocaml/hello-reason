@@ -1,0 +1,13 @@
+platform:
+    - x64
+
+install:
+    - ps: Install-Product node 8 x64
+    - npm install -g esy@0.2.9
+    - appveyor-retry esy install
+
+build_script:
+    - esy build
+    - esy x Hello
+
+test: off
