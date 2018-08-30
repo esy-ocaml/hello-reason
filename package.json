@@ -30,6 +30,7 @@
     "@esy-ocaml/esy-installer": "github:bryphe/esy-installer#2fd4a7c"
   },
   "devDependencies": {
+    "@esy-ocaml/merlin": "*",
     "ocaml": "~4.6.0"
   }
 }
