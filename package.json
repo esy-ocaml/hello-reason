@@ -25,6 +25,9 @@
     "refmterr": "*",
     "ocaml": "~4.6.0"
   },
+  "resolutions": {
+    "@esy-ocaml/esy-installer": "0.0.1"
+  },
   "devDependencies": {
     "@esy-ocaml/merlin": "*",
     "ocaml": "~4.6.0"
