@@ -27,7 +27,7 @@
   },
   "resolutions": {
     "@opam/menhir": "20170712",
-    "@esy-ocaml/esy-installer": "github:bryphe/esy-installer#2fd4a7c"
+    "@esy-ocaml/esy-installer": "github:bryphe/esy-installer#2b0862f"
   },
   "devDependencies": {
     "@esy-ocaml/merlin": "*",

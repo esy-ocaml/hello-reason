@@ -1,5 +1,5 @@
 {
-  "hash": "1094d18aa15c4b1eaa5dbd95ec05de9e",
+  "hash": "95679f469928d5a0ad1ce0851fedd2b8",
   "root": "hello-reason@path:.",
   "node": {
     "refmterr@3.1.7": {
@@ -702,7 +702,7 @@
         "opam": null
       },
       "dependencies": [
-        "@esy-ocaml/esy-installer@github:bryphe/esy-installer#2fd4a7c",
+        "@esy-ocaml/esy-installer@github:bryphe/esy-installer#2b0862f",
         "@esy-ocaml/substs@0.0.1", "@opam/jbuilder@opam:transition",
         "@opam/menhir@opam:20170712", "@opam/merlin-extend@opam:0.3",
         "@opam/ocaml-migrate-parsetree@opam:1.0.11",
@@ -719,16 +719,16 @@
         "opam": null
       },
       "dependencies": [
-        "@esy-ocaml/esy-installer@github:bryphe/esy-installer#2fd4a7c",
+        "@esy-ocaml/esy-installer@github:bryphe/esy-installer#2b0862f",
         "@esy-ocaml/substs@0.0.1", "@opam/ocamlfind@opam:1.8.0",
         "@opam/yojson@opam:1.4.1"
       ]
     },
-    "@esy-ocaml/esy-installer@github:bryphe/esy-installer#2fd4a7c": {
+    "@esy-ocaml/esy-installer@github:bryphe/esy-installer#2b0862f": {
       "record": {
         "name": "@esy-ocaml/esy-installer",
-        "version": "github:bryphe/esy-installer#2fd4a7c",
-        "source": "github:bryphe/esy-installer#2fd4a7c",
+        "version": "github:bryphe/esy-installer#2b0862f",
+        "source": "github:bryphe/esy-installer#2b0862f",
         "files": [],
         "opam": null
       },
