@@ -1,5 +1,5 @@
 {
-  "hash": "ca4c60a79d4c11c3dd6f11e682022383",
+  "hash": "4a2e8b488b3149ac698a30816650af39",
   "root": "hello-reason@path:.",
   "node": {
     "refmterr@3.1.7": {
@@ -13,7 +13,7 @@
       },
       "dependencies": [
         "@esy-ocaml/reason@3.3.3", "@opam/jbuilder@opam:transition",
-        "@opam/re@opam:1.7.1"
+        "@opam/re@opam:1.8.0"
       ]
     },
     "ocaml@4.6.5": {
@@ -45,10 +45,8 @@
       "record": {
         "name": "@opam/zed",
         "version": "opam:1.6",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/zed.1.6+opam.tar.gz#md5:626adf7f380b1ee865850104123de8eb",
-          "archive:https://github.com/diml/zed/releases/download/1.6/zed-1.6.tbz#md5:f75c3094af1a22f9801d5ca5eb2d40e0"
-        ],
+        "source":
+          "archive:https://github.com/diml/zed/releases/download/1.6/zed-1.6.tbz#md5:f75c3094af1a22f9801d5ca5eb2d40e0",
         "files": [],
         "opam": {
           "name": "zed",
@@ -68,10 +66,8 @@
       "record": {
         "name": "@opam/yojson",
         "version": "opam:1.4.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/yojson.1.4.1+opam.tar.gz#md5:e6c9643ee76e622ca2e53ef9e4091192",
-          "archive:https://github.com/mjambon/yojson/archive/v1.4.1.tar.gz#md5:3ea6e36422dd670e8ab880710d5f7398"
-        ],
+        "source":
+          "archive:https://github.com/mjambon/yojson/archive/v1.4.1.tar.gz#md5:3ea6e36422dd670e8ab880710d5f7398",
         "files": [],
         "opam": {
           "name": "yojson",
@@ -91,10 +87,8 @@
       "record": {
         "name": "@opam/topkg",
         "version": "opam:0.9.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/topkg.0.9.1+opam.tar.gz#md5:1ec2522f346d19bf4c24c3c0b2e3e8bd",
-          "archive:http://erratique.ch/software/topkg/releases/topkg-0.9.1.tbz#md5:8978a0595db1a22e4251ec62735d4b84"
-        ],
+        "source":
+          "archive:http://erratique.ch/software/topkg/releases/topkg-0.9.1.tbz#md5:8978a0595db1a22e4251ec62735d4b84",
         "files": [],
         "opam": {
           "name": "topkg",
@@ -109,14 +103,32 @@
         "@opam/ocamlfind@opam:1.8.0", "@opam/result@opam:1.3", "ocaml@4.6.5"
       ]
     },
+    "@opam/seq@opam:0.1": {
+      "record": {
+        "name": "@opam/seq",
+        "version": "opam:0.1",
+        "source":
+          "archive:https://github.com/c-cube/seq/archive/0.1.tar.gz#md5:0e87f9709541ed46ecb6f414bc31458c",
+        "files": [],
+        "opam": {
+          "name": "seq",
+          "version": "0.1",
+          "opam":
+            "opam-version: \"2.0\"\nname: \"seq\"\nversion: \"0.1\"\nsynopsis:\n  \"Compatibility package for OCaml's standard iterator type starting from 4.07.\"\nmaintainer: \"simon.cruanes.2007@m4x.org\"\nauthors: \"Simon Cruanes\"\nlicense: \"GPL\"\ntags: [\"iterator\" \"seq\" \"pure\" \"list\" \"compatibility\" \"cascade\"]\nhomepage: \"https://github.com/c-cube/seq/\"\nbug-reports: \"https://github.com/c-cube/seq/issues\"\ndepends: [\n  \"ocaml\" {< \"4.07.0\"}\n  \"ocamlfind\" {build}\n  \"ocamlbuild\" {build}\n]\nflags: light-uninstall\nbuild: [make \"build\"]\ninstall: [make \"install\"]\nremove: [\"ocamlfind\" \"remove\" \"seq\"]\ndev-repo: \"git+https://github.com/c-cube/seq.git\"\nurl {\n  src: \"https://github.com/c-cube/seq/archive/0.1.tar.gz\"\n  checksum: \"md5=0e87f9709541ed46ecb6f414bc31458c\"\n}",
+          "override": null
+        }
+      },
+      "dependencies": [
+        "@esy-ocaml/substs@0.0.1", "@opam/ocamlbuild@opam:0.12.0",
+        "@opam/ocamlfind@opam:1.8.0", "ocaml@4.6.5"
+      ]
+    },
     "@opam/result@opam:1.3": {
       "record": {
         "name": "@opam/result",
         "version": "opam:1.3",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/result.1.3+opam.tar.gz#md5:627b5fd1f70949a36e38cb2798021f9a",
-          "archive:https://github.com/janestreet/result/releases/download/1.3/result-1.3.tbz#md5:4beebefd41f7f899b6eeba7414e7ae01"
-        ],
+        "source":
+          "archive:https://github.com/janestreet/result/releases/download/1.3/result-1.3.tbz#md5:4beebefd41f7f899b6eeba7414e7ae01",
         "files": [],
         "opam": {
           "name": "result",
@@ -135,10 +147,8 @@
       "record": {
         "name": "@opam/react",
         "version": "opam:1.2.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/react.1.2.1+opam.tar.gz#md5:ca71a5239ce33d429f73e675480e2a88",
-          "archive:http://erratique.ch/software/react/releases/react-1.2.1.tbz#md5:ce1454438ce4e9d2931248d3abba1fcc"
-        ],
+        "source":
+          "archive:http://erratique.ch/software/react/releases/react-1.2.1.tbz#md5:ce1454438ce4e9d2931248d3abba1fcc",
         "files": [],
         "opam": {
           "name": "react",
@@ -153,27 +163,24 @@
         "@opam/ocamlfind@opam:1.8.0", "@opam/topkg@opam:0.9.1", "ocaml@4.6.5"
       ]
     },
-    "@opam/re@opam:1.7.1": {
+    "@opam/re@opam:1.8.0": {
       "record": {
         "name": "@opam/re",
-        "version": "opam:1.7.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/re.1.7.1+opam.tar.gz#md5:f6b359020a1a28b326f9c02d6d5c1cdf",
-          "archive:https://github.com/ocaml/ocaml-re/archive/1.7.1.tar.gz#md5:0e45743512b7ab5e6b175f955dc72002"
-        ],
+        "version": "opam:1.8.0",
+        "source":
+          "archive:https://github.com/ocaml/ocaml-re/releases/download/1.8.0/re-1.8.0.tbz#md5:765f6f8d3e6ab200866e719ed7e5178d",
         "files": [],
         "opam": {
           "name": "re",
-          "version": "1.7.1",
+          "version": "1.8.0",
           "opam":
-            "opam-version: \"2.0\"\nname: \"re\"\nversion: \"1.7.1\"\nsynopsis: \"RE is a regular expression library for OCaml\"\ndescription: \"\"\"\nPure OCaml regular expressions with:\n* Perl-style regular expressions (module Re_perl)\n* Posix extended regular expressions (module Re_posix)\n* Emacs-style regular expressions (module Re_emacs)\n* Shell-style file globbing (module Re_glob)\n* Compatibility layer for OCaml's built-in Str module (module Re_str)\"\"\"\nmaintainer: \"jerome.vouillon@pps.univ-paris-diderot.fr\"\nauthors: [\"Jerome Vouillon\" \"Thomas Gazagnaire\" \"Anil Madhavapeddy\"]\nlicense: \"LGPL-2.0 with OCaml linking exception\"\nhomepage: \"https://github.com/ocaml/ocaml-re\"\nbug-reports: \"https://github.com/ocaml/ocaml-re/issues\"\ndepends: [\n  \"ocaml\"\n  \"ocamlfind\" {build}\n  \"ocamlbuild\" {build}\n  \"base-bytes\"\n]\nflags: light-uninstall\nbuild: [\n  [\"ocaml\" \"setup.ml\" \"-configure\" \"--prefix\" prefix]\n  [\"ocaml\" \"setup.ml\" \"-build\"]\n  [\"ocaml\" \"setup.ml\" \"-doc\"] {with-doc}\n]\ninstall: [\"ocaml\" \"setup.ml\" \"-install\"]\nremove: [\"ocamlfind\" \"remove\" \"re\"]\ndev-repo: \"git+https://github.com/ocaml/ocaml-re.git\"\nurl {\n  src: \"https://github.com/ocaml/ocaml-re/archive/1.7.1.tar.gz\"\n  checksum: \"md5=0e45743512b7ab5e6b175f955dc72002\"\n}",
+            "opam-version: \"2.0\"\nname: \"re\"\nversion: \"1.8.0\"\nsynopsis: \"RE is a regular expression library for OCaml\"\ndescription: \"\"\"\nPure OCaml regular expressions with:\n* Perl-style regular expressions (module Re.Perl)\n* Posix extended regular expressions (module Re.Posix)\n* Emacs-style regular expressions (module Re.Emacs)\n* Shell-style file globbing (module Re.Glob)\n* Compatibility layer for OCaml's built-in Str module (module Re.Str)\"\"\"\nmaintainer: \"rudi.grinberg@gmail.com\"\nauthors: [\n  \"Jerome Vouillon\"\n  \"Thomas Gazagnaire\"\n  \"Anil Madhavapeddy\"\n  \"Rudi Grinberg\"\n  \"Gabriel Radanne\"\n]\nlicense: \"LGPL-2.0 with OCaml linking exception\"\nhomepage: \"https://github.com/ocaml/ocaml-re\"\nbug-reports: \"https://github.com/ocaml/ocaml-re/issues\"\ndepends: [\n  \"ocaml\" {>= \"4.02.3\"}\n  \"jbuilder\" {build & >= \"1.0+beta10\"}\n  \"ounit\" {with-test}\n  \"seq\"\n]\nbuild: [\n  [\"jbuilder\" \"subst\" \"-n\" name] {pinned}\n  [\"jbuilder\" \"build\" \"-p\" name \"-j\" jobs]\n  [\"jbuilder\" \"runtest\" \"-p\" name \"-j\" jobs] {with-test}\n]\ndev-repo: \"git+https://github.com/ocaml/ocaml-re.git\"\nurl {\n  src:\n    \"https://github.com/ocaml/ocaml-re/releases/download/1.8.0/re-1.8.0.tbz\"\n  checksum: \"md5=765f6f8d3e6ab200866e719ed7e5178d\"\n}",
           "override": null
         }
       },
       "dependencies": [
-        "@esy-ocaml/substs@0.0.1", "@opam/base-bytes@opam:base",
-        "@opam/ocamlbuild@opam:0.12.0", "@opam/ocamlfind@opam:1.8.0",
-        "ocaml@4.6.5"
+        "@esy-ocaml/substs@0.0.1", "@opam/jbuilder@opam:transition",
+        "@opam/seq@opam:0.1", "ocaml@4.6.5"
       ]
     },
     "@opam/ocamlfind@opam:1.8.0": {
@@ -181,7 +188,6 @@
         "name": "@opam/ocamlfind",
         "version": "opam:1.8.0",
         "source": [
-          "archive:https://opam.ocaml.org/archives/ocamlfind.1.8.0+opam.tar.gz#md5:4d70eaf49e0f5f4d84257391088da0a2",
           "archive:http://download.camlcity.org/download/findlib-1.8.0.tar.gz#md5:a710c559667672077a93d34eb6a42e5b",
           "archive:http://download2.camlcity.org/download/findlib-1.8.0.tar.gz#md5:a710c559667672077a93d34eb6a42e5b"
         ],
@@ -247,10 +253,8 @@
       "record": {
         "name": "@opam/ocamlbuild",
         "version": "opam:0.12.0",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/ocamlbuild.0.12.0+opam.tar.gz#md5:43f12b7f9a57d8e967a652bfb6a9dd65",
-          "archive:https://github.com/ocaml/ocamlbuild/archive/0.12.0.tar.gz#md5:442baa19470bd49150f153122e22907b"
-        ],
+        "source":
+          "archive:https://github.com/ocaml/ocamlbuild/archive/0.12.0.tar.gz#md5:442baa19470bd49150f153122e22907b",
         "files": [
           {
             "name": "_esy/ocamlbuild-0.12.0.patch",
@@ -291,10 +295,8 @@
       "record": {
         "name": "@opam/ocaml-migrate-parsetree",
         "version": "opam:1.0.11",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/ocaml-migrate-parsetree.1.0.11+opam.tar.gz#md5:d3ac8978ae2f0554ac77912e94abed3b",
-          "archive:https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/v1.0.11/ocaml-migrate-parsetree-1.0.11.tbz#md5:26bb1b038de81a79d43ed95c282b2b71"
-        ],
+        "source":
+          "archive:https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/v1.0.11/ocaml-migrate-parsetree-1.0.11.tbz#md5:26bb1b038de81a79d43ed95c282b2b71",
         "files": [],
         "opam": {
           "name": "ocaml-migrate-parsetree",
@@ -313,10 +315,8 @@
       "record": {
         "name": "@opam/merlin-extend",
         "version": "opam:0.3",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/merlin-extend.0.3+opam.tar.gz#md5:5bc02f7e256c5a2e99e8dc01b26b81c2",
-          "archive:https://github.com/let-def/merlin-extend/archive/v0.3.tar.gz#md5:9c6dfd4f53328f02f12fcc265f4e2dda"
-        ],
+        "source":
+          "archive:https://github.com/let-def/merlin-extend/archive/v0.3.tar.gz#md5:9c6dfd4f53328f02f12fcc265f4e2dda",
         "files": [
           {
             "name": "_esy/merlin-extend-winfix.patch",
@@ -349,10 +349,8 @@
       "record": {
         "name": "@opam/menhir",
         "version": "opam:20170712",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/menhir.20170712+opam.tar.gz#md5:18aaf814e51aeb4fbfd8b7c1fb7ffbba",
-          "archive:http://gallium.inria.fr/~fpottier/menhir/menhir-20170712.tar.gz#md5:85a5c2aef1d3f2224dab7c53d79892e5"
-        ],
+        "source":
+          "archive:http://gallium.inria.fr/~fpottier/menhir/menhir-20170712.tar.gz#md5:85a5c2aef1d3f2224dab7c53d79892e5",
         "files": [
           {
             "name": "_esy/menhir-20170712.patch",
@@ -389,10 +387,8 @@
       "record": {
         "name": "@opam/lwt_react",
         "version": "opam:1.1.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/lwt_react.1.1.1+opam.tar.gz#md5:212efee48f058c45e32b4a391ea31fb9",
-          "archive:https://github.com/ocsigen/lwt/archive/4.0.0.tar.gz#md5:3bbde866884e32cc7a9d9cbd1e52bde3"
-        ],
+        "source":
+          "archive:https://github.com/ocsigen/lwt/archive/4.0.0.tar.gz#md5:3bbde866884e32cc7a9d9cbd1e52bde3",
         "files": [],
         "opam": {
           "name": "lwt_react",
@@ -411,10 +407,8 @@
       "record": {
         "name": "@opam/lwt_log",
         "version": "opam:1.1.0",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/lwt_log.1.1.0+opam.tar.gz#md5:b41828633ddea2e0d68a649c3def1ece",
-          "archive:https://github.com/aantron/lwt_log/archive/1.1.0.tar.gz#md5:92142135d01a4d7e805990cc98653d55"
-        ],
+        "source":
+          "archive:https://github.com/aantron/lwt_log/archive/1.1.0.tar.gz#md5:92142135d01a4d7e805990cc98653d55",
         "files": [],
         "opam": {
           "name": "lwt_log",
@@ -433,10 +427,8 @@
       "record": {
         "name": "@opam/lwt",
         "version": "opam:4.1.0",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/lwt.4.1.0+opam.tar.gz#md5:5c73061ac341ca56c2f1bd62728a0ad9",
-          "archive:https://github.com/ocsigen/lwt/archive/4.1.0.tar.gz#md5:e919bee206f18b3d49250ecf9584fde7"
-        ],
+        "source":
+          "archive:https://github.com/ocsigen/lwt/archive/4.1.0.tar.gz#md5:e919bee206f18b3d49250ecf9584fde7",
         "files": [],
         "opam": {
           "name": "lwt",
@@ -456,10 +448,8 @@
       "record": {
         "name": "@opam/lambda-term",
         "version": "opam:1.13",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/lambda-term.1.13+opam.tar.gz#md5:4d012fe08f3698ac3113909ba7269812",
-          "archive:https://github.com/diml/lambda-term/releases/download/1.13/lambda-term-1.13.tbz#md5:c13826a97014d4d573b927b623c7e043"
-        ],
+        "source":
+          "archive:https://github.com/diml/lambda-term/releases/download/1.13/lambda-term-1.13.tbz#md5:c13826a97014d4d573b927b623c7e043",
         "files": [
           {
             "name": "_esy/lambda-term-1.13.patch",
@@ -513,10 +503,8 @@
       "record": {
         "name": "@opam/easy-format",
         "version": "opam:1.3.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/easy-format.1.3.1+opam.tar.gz#md5:6fa9fa55978e78690975f0663cb45a85",
-          "archive:https://github.com/mjambon/easy-format/archive/v1.3.1.tar.gz#md5:4e163700fb88fdcd6b8976c3a216c8ea"
-        ],
+        "source":
+          "archive:https://github.com/mjambon/easy-format/archive/v1.3.1.tar.gz#md5:4e163700fb88fdcd6b8976c3a216c8ea",
         "files": [],
         "opam": {
           "name": "easy-format",
@@ -535,10 +523,8 @@
       "record": {
         "name": "@opam/dune",
         "version": "opam:1.2.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/dune.1.2.1+opam.tar.gz#md5:fcac3deff62987403dd6cd55fa3f9bac",
-          "archive:https://github.com/ocaml/dune/releases/download/1.2.1/dune-1.2.1.tbz#md5:f96bdf1a893a2178c2ad9c388439bd18"
-        ],
+        "source":
+          "archive:https://github.com/ocaml/dune/releases/download/1.2.1/dune-1.2.1.tbz#md5:f96bdf1a893a2178c2ad9c388439bd18",
         "files": [],
         "opam": {
           "name": "dune",
@@ -559,10 +545,8 @@
       "record": {
         "name": "@opam/cppo",
         "version": "opam:1.6.5",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/cppo.1.6.5+opam.tar.gz#md5:07b0faeb722c1d625befb89fdc39617f",
-          "archive:https://github.com/mjambon/cppo/archive/v1.6.5.tar.gz#md5:1cd25741d31417995b0973fe0b6f6c82"
-        ],
+        "source":
+          "archive:https://github.com/mjambon/cppo/archive/v1.6.5.tar.gz#md5:1cd25741d31417995b0973fe0b6f6c82",
         "files": [],
         "opam": {
           "name": "cppo",
@@ -613,10 +597,8 @@
       "record": {
         "name": "@opam/camomile",
         "version": "opam:1.0.1",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/camomile.1.0.1+opam.tar.gz#md5:1e1465d42ef0e422a165b19b22b2964b",
-          "archive:https://github.com/yoriyuki/Camomile/releases/download/1.0.1/camomile-1.0.1.tbz#md5:82e016653431353a07f22c259adc6e05"
-        ],
+        "source":
+          "archive:https://github.com/yoriyuki/Camomile/releases/download/1.0.1/camomile-1.0.1.tbz#md5:82e016653431353a07f22c259adc6e05",
         "files": [],
         "opam": {
           "name": "camomile",
@@ -635,10 +617,8 @@
       "record": {
         "name": "@opam/biniou",
         "version": "opam:1.2.0",
-        "source": [
-          "archive:https://opam.ocaml.org/archives/biniou.1.2.0+opam.tar.gz#md5:488e51fe3339b2b190dfa1db74dd7946",
-          "archive:https://github.com/mjambon/biniou/archive/v1.2.0.tar.gz#md5:f3e92358e832ed94eaf23ce622ccc2f9"
-        ],
+        "source":
+          "archive:https://github.com/mjambon/biniou/archive/v1.2.0.tar.gz#md5:f3e92358e832ed94eaf23ce622ccc2f9",
         "files": [],
         "opam": {
           "name": "biniou",
