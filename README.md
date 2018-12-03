@@ -32,9 +32,10 @@ using:
 
     % esy build
 
-And test compiled executable:
+And test compiled executable (runs `scripts.tests` specified in
+`package.json`):
 
-    % esy ./_build/default/bin/Hello.exe
+    % esy test
 
 Shell into environment:
 

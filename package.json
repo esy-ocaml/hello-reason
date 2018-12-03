@@ -1,24 +1,22 @@
 {
   "name": "hello-reason",
   "version": "0.1.0",
-  "description": "Reason workflow with Esy",
+  "description": "Example Reason Esy Project",
   "license": "MIT",
   "esy": {
     "build": "refmterr dune build -p #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
-      "releasedBinaries": [
-        "Hello.exe"
-      ],
-      "deleteFromBinaryRelease": [
-        "*esy_ocaml_*",
-        "*refmterr-*",
-        "ocaml-*"
-      ]
+      "releasedBinaries": ["Hello.exe"],
+      "deleteFromBinaryRelease": ["*esy_ocaml_*", "*refmterr-*", "ocaml-*"]
     }
+  },
+  "scripts": {
+    "test": "esy x Hello.exe"
   },
   "dependencies": {
     "@opam/dune": "*",
+    "@reason-native/console": "*",
     "@opam/lambda-term": "*",
     "@opam/lwt": "*",
     "@esy-ocaml/reason": "*",
@@ -26,12 +24,11 @@
     "ocaml": "~4.6.0"
   },
   "resolutions": {
-    "@esy-ocaml/esy-installer": "0.0.1",
     "@opam/menhir": "20171013",
     "@opam/re": "1.8.0"
   },
   "devDependencies": {
-    "@esy-ocaml/merlin": "*",
+    "@opam/merlin": "*",
     "ocaml": "~4.6.0"
   }
 }
