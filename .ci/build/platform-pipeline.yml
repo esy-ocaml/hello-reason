@@ -1,0 +1,22 @@
+parameters:
+  platform: "macOS"
+  vmImage: "macOS-10.13"
+
+jobs:
+  - job: ${{ parameters.platform }}
+    timeoutInMinutes: 120 # This is mostly for Windows
+    pool:
+      vmImage: ${{ parameters.vmImage }}
+      demands: node.js
+
+    steps:
+      - template: ../utils/use-node.yml
+      - template: ../utils/use-esy.yml
+      - template: install.yml
+      - template: build.yml
+      - template: test.yml
+      - template: release.yml
+      - template: publish.yml
+        parameters:
+          ArtifactName: ${{ parameters.platform }}
+          

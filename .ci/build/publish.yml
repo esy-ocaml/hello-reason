@@ -1,0 +1,9 @@
+parameters:
+  ArtifactName: "Unknown"
+
+steps:
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: ${{ parameters.ArtifactName }}"
+    inputs:
+      PathtoPublish: "_release"
+      ArtifactName: ${{ parameters.ArtifactName }}

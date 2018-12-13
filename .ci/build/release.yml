@@ -1,0 +1,3 @@
+steps:
+  - script: "esy release"
+    displayName: "esy release"

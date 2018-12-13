@@ -1,0 +1,3 @@
+steps:
+  - script: "esy x Hello.exe"
+    displayName: "Test command"

@@ -1,0 +1,3 @@
+steps:
+  - script: "esy install"
+    displayName: "esy install"
