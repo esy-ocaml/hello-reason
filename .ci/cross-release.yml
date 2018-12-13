@@ -1,15 +1,17 @@
 steps:
-  - template: release/setup-platform.yml
+  - template: utils/use-node.yml
+
+  - template: release-platform-setup.yml
     parameters:
       platform: "Linux"
       folder: "platform-linux"
 
-  - template: release/setup-platform.yml
+  - template: release-platform-setup.yml
     parameters:
       platform: "macOS"
       folder: "platform-darwin"
 
-  - template: release/setup-platform.yml
+  - template: release-platform-setup.yml
     parameters:
       platform: "Windows"
       folder: "platform-windows-x64"
@@ -25,5 +27,5 @@ steps:
   - task: PublishBuildArtifacts@1
     displayName: "Publish Artifact: Release"
     inputs:
-      PathtoPublish: "_release/hello-reason-*.tgz"
+      PathtoPublish: "_release"
       ArtifactName: Release

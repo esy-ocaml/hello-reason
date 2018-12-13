@@ -4,21 +4,22 @@ trigger:
   - master
 
 jobs:
-  - template: build/platform-pipeline.yml
+  - template: build-platform.yml
     parameters:
       platform: Linux
       vmImage: ubuntu-16.04
 
-  - template: build/platform-pipeline.yml
+  - template: build-platform.yml
     parameters:
       platform: macOS
       vmImage: macOS-10.13
 
-  - template: build/platform-pipeline.yml
+  - template: build-platform.yml
     parameters:
       platform: Windows
       vmImage: vs2017-win2016
 
+  # This job is kept here as we want to have the platform names in the same file
   - job: Release
     displayName: Release
     dependsOn:
@@ -29,5 +30,4 @@ jobs:
       vmImage: macOS-10.13
       demands: node.js
     steps:
-      - template: utils/use-node.yml
       - template: cross-release.yml

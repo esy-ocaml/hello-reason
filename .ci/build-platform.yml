@@ -1,0 +1,28 @@
+parameters:
+  platform: "macOS"
+  vmImage: "macOS-10.13"
+
+jobs:
+  - job: ${{ parameters.platform }}
+    pool:
+      vmImage: ${{ parameters.vmImage }}
+      demands: node.js
+    timeoutInMinutes: 120 # This is mostly for Windows
+
+    steps:
+      - template: utils/use-node.yml
+      - template: utils/use-esy.yml
+      - script: "esy install"
+        displayName: "esy install"
+      - script: "esy build"
+        displayName: "esy build"
+      - script: "esy test"
+        displayName: "Test command"
+      - script: "esy release"
+        displayName: "esy release"
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish Artifact: ${{ parameters.platform }}"
+        inputs:
+          PathtoPublish: "_release"
+          ArtifactName: ${{ parameters.platform }}
+          

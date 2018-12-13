@@ -13,9 +13,9 @@ const packageJson = JSON.stringify(
     scripts: {
       postinstall: "node ./postinstall.js"
     },
-    bin: {
-      "Hello.exe": "bin/Hello.exe"
-    },
+    bin: mainPackageJson.esy.release.releasedBinaries.reduce((acc, curr) => {
+      return Object.assign({ [curr]: "bin/" + curr }, acc);
+    }, {}),
     files: [
       "_export/",
       "bin/",
@@ -40,7 +40,7 @@ fs.writeFileSync(
 
 console.log("Copying LICENSE");
 fs.copyFileSync(
-  path.join(__dirname, "..", "LICENSE"),
+  path.join(__dirname, "..", "MIT-LICENSE"),
   path.join(__dirname, "..", "_release", "LICENSE")
 );
 
@@ -61,7 +61,13 @@ const placeholderFile = `#!/usr/bin/env node
 
 console.log("You need to have postinstall enabled")`;
 fs.mkdirSync(path.join(__dirname, "..", "_release", "bin"));
-const binPath = path.join(__dirname, "..", "_release", "bin", "Hello.exe");
+const binPath = path.join(
+  __dirname,
+  "..",
+  "_release",
+  "bin",
+  mainPackageJson.esy.release.releasedBinaries[0]
+);
 
 fs.writeFileSync(binPath, placeholderFile);
 fs.chmodSync(binPath, 0777);
