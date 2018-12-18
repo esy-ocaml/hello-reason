@@ -1,7 +1,6 @@
 # hello-reason
 
-[![Build status](https://ci.appveyor.com/api/projects/status/clqxyx5ohadbjkcw/branch/master?svg=true)](https://ci.appveyor.com/project/esy/hello-reason/branch/master)
-[![Build Status](https://travis-ci.org/esy-ocaml/hello-reason.svg?branch=master)](https://travis-ci.org/esy-ocaml/hello-reason)
+[![Build Status](https://dev.azure.com/esy-ocaml/esy-ocaml/_apis/build/status/esy-ocaml.hello-reason?branchName=master)](https://dev.azure.com/esy-ocaml/esy-ocaml/_build/latest?definitionId=1?branchName=master)
 
 A project which demonstrates a Reason workflow with [Esy][].
 
