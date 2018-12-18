@@ -7,8 +7,14 @@
     "build": "refmterr dune build -p #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
-      "releasedBinaries": ["Hello.exe"],
-      "deleteFromBinaryRelease": ["*esy_ocaml_*", "*refmterr-*", "ocaml-*"]
+      "releasedBinaries": [
+        "Hello.exe"
+      ],
+      "deleteFromBinaryRelease": [
+        "*esy_ocaml_*",
+        "*refmterr-*",
+        "ocaml-*"
+      ]
     }
   },
   "scripts": {
@@ -17,15 +23,11 @@
   "dependencies": {
     "@opam/dune": "*",
     "@reason-native/console": "*",
-    "@opam/lambda-term": "*",
-    "@opam/lwt": "*",
+    "@reason-native/pastel": "*",
+    "@reason-native/rely": "*",
     "@esy-ocaml/reason": "*",
     "refmterr": "*",
     "ocaml": "~4.6.0"
-  },
-  "resolutions": {
-    "@opam/menhir": "20171013",
-    "@opam/re": "1.8.0"
   },
   "devDependencies": {
     "@opam/merlin": "*",
