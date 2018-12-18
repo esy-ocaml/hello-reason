@@ -15,7 +15,12 @@ var fs = require("fs");
 var os = require("os");
 var platform = process.platform;
 
-var binariesToCopy = [path.join("bin", "Hello.exe"), "esyInstallRelease.js"];
+var packageJson = require('./package.json');
+var binariesToCopy = Object.keys(packageJson.bin).map(function(name) {
+  return packageJson.bin[name]
+}).concat([
+  "esyInstallRelease.js"
+]);
 var foldersToCopy = ["bin", "_export"];
 
 function copyRecursive(srcDir, dstDir) {
