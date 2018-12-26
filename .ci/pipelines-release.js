@@ -13,7 +13,7 @@ const packageJson = JSON.stringify(
     scripts: {
       postinstall: "node ./postinstall.js"
     },
-    bin: mainPackageJson.esy.release.releasedBinaries.reduce((acc, curr) => {
+    bin: mainPackageJson.esy.release.bin.reduce((acc, curr) => {
       return Object.assign({ [curr]: "bin/" + curr }, acc);
     }, {}),
     files: [
