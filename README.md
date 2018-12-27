@@ -46,6 +46,6 @@ Shell into environment:
 `esy` allows creating prebuilt binary packages for your current platform, with
 no dependencies.
 
-    % esy release
+    % esy npm-release
     % cd _release
     % npm publish

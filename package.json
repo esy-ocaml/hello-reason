@@ -7,13 +7,8 @@
     "build": "refmterr dune build -p #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
-      "releasedBinaries": [
+      "bin": [
         "Hello.exe"
-      ],
-      "deleteFromBinaryRelease": [
-        "*esy_ocaml_*",
-        "*refmterr-*",
-        "ocaml-*"
       ]
     }
   },
