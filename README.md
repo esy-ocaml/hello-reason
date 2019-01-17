@@ -36,6 +36,11 @@ And test compiled executable (runs `scripts.tests` specified in
 
     % esy test
 
+Documentation for the libraries in the project can be generated with:
+
+    % esy doc
+    % esy open '#{self.target_dir}/default/_doc/_html/index.html'
+
 Shell into environment:
 
     % esy shell

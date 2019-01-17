@@ -13,7 +13,8 @@
     }
   },
   "scripts": {
-    "test": "esy x Hello.exe"
+    "test": "esy x Hello.exe",
+    "doc": "esy dune build @doc"
   },
   "dependencies": {
     "@opam/dune": "*",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@opam/merlin": "*",
-    "ocaml": "~4.6.0"
+    "ocaml": "~4.6.0",
+    "@opam/odoc": "*"
   }
 }
