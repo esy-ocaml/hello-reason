@@ -66,7 +66,7 @@ const binPath = path.join(
   "..",
   "_release",
   "bin",
-  mainPackageJson.esy.release.releasedBinaries[0]
+  mainPackageJson.esy.release.bin[0]
 );
 
 fs.writeFileSync(binPath, placeholderFile);
