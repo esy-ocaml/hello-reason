@@ -9,7 +9,7 @@ A project which demonstrates a Reason workflow with [Esy][].
 
 ## Usage
 
-You need Esy, you can install the beta using [npm][https://npmjs.com]:
+You need Esy, you can install the beta using [npm](https://npmjs.com):
 
     % npm install -g esy@latest
 
