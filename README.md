@@ -24,6 +24,9 @@ Now you can run your editor within the environment (which also includes merlin):
     % esy $EDITOR
     % esy vim
 
+Alternatively you can try [vim-reasonml](https://github.com/jordwalke/vim-reasonml)
+which loads esy project environments automatically.
+
 After you make some changes to source code, you can re-run project's build
 again with the same simple `esy` command.
 
