@@ -14,6 +14,8 @@
   },
   "scripts": {
     "test": "esy x Hello.exe",
+    "test:unit": "esy b dune runtest",
+    "test:promote": "esy b dune runtest",
     "doc": "esy dune build @doc"
   },
   "dependencies": {
@@ -23,7 +25,10 @@
     "@reason-native/rely": "*",
     "@esy-ocaml/reason": ">= 3.4.0 < 3.5.0",
     "refmterr": "*",
-    "ocaml": "~4.6.0"
+    "ocaml": "~4.6.0",
+    "@opam/ppx_expect": "v0.11.0",
+    "@opam/ppx_inline_test": "*"
+
   },
   "devDependencies": {
     "@opam/merlin": "*",

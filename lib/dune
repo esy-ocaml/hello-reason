@@ -1,5 +1,11 @@
 (library
   (name lib)
   (flags (-w -40 -w +26))
+  (inline_tests)
   (public_name hello-reason)
-  (libraries console.lib pastel.lib))
+  (libraries console.lib pastel.lib)
+  (preprocess (pps 
+                  ppx_expect
+                  ppx_inline_test
+                  ))
+  )

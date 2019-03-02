@@ -46,6 +46,25 @@ Shell into environment:
 
     % esy shell
 
+## Unit testing
+
+There are two test-cases in `lib/Util.re`. There is a command to execute them:
+
+    % esy test:unit
+
+First test-case uses [inline_test](https://github.com/janestreet/ppx_inline_test),
+using the `let%test` that checks an expression is true.
+
+Same library provides `let%test_unit` that checks there is no exception and `let%test_module` for grouping tests.
+
+Second test-case uses [expect-test](https://github.com/janestreet/ppx_expect),
+using `let%expect_test` with code that prints to stdout and `%expect` at the the end with the expected output.
+If the output differs, there is a command to automatically update the `%expect` assertion to match the actual output:
+
+    % esy test:promote
+
+This functionality is provided by [dune build system when running tests](https://dune.readthedocs.io/en/latest/tests.html)
+Additional configuration as well as enabling the extension-points that the test-frameworks rely on is done in `lib/dune`
 
 ## Create Prebuilt Release:
 
