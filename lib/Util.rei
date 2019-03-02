@@ -5,5 +5,5 @@
     {[
     print_endline(hello());
     ]} */
-let hello: (unit) => string;
+let hello: (string) => string;
 
