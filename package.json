@@ -8,12 +8,12 @@
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
       "bin": [
-        "Hello.exe"
+        "Hello"
       ]
     }
   },
   "scripts": {
-    "test": "esy x Hello.exe",
+    "test": "esy x Hello",
     "doc": "esy dune build @doc"
   },
   "dependencies": {

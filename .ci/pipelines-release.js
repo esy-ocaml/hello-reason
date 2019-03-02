@@ -38,11 +38,15 @@ fs.writeFileSync(
   }
 );
 
-console.log("Copying LICENSE");
-fs.copyFileSync(
-  path.join(__dirname, "..", "MIT-LICENSE"),
-  path.join(__dirname, "..", "_release", "LICENSE")
-);
+try {
+  console.log("Copying LICENSE");
+  fs.copyFileSync(
+    path.join(__dirname, "..", "LICENSE"),
+    path.join(__dirname, "..", "_release", "LICENSE")
+  );
+} catch (e) {
+  console.warn("No LICENSE found");
+}
 
 console.log("Copying README.md");
 fs.copyFileSync(
@@ -57,9 +61,9 @@ fs.copyFileSync(
 );
 
 console.log("Creating placeholder files");
-const placeholderFile = `#!/usr/bin/env node
-
-console.log("You need to have postinstall enabled")`;
+const placeholderFile = `:; echo "You need to have postinstall enabled"; exit $?
+@ECHO OFF
+ECHO You need to have postinstall enabled`;
 fs.mkdirSync(path.join(__dirname, "..", "_release", "bin"));
 const binPath = path.join(
   __dirname,
