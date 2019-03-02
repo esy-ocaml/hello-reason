@@ -1,6 +1,9 @@
 steps:
   - template: utils/use-node.yml
 
+  - script: "mkdir _release"
+    displayName: "Create _release dir"
+
   - template: release-platform-setup.yml
     parameters:
       platform: "Linux"
@@ -20,7 +23,7 @@ steps:
     displayName: "node .ci/pipelines-release.js"
     continueOnError: true
 
-  - script: "npm pack"
+  - script: "npm pack ."
     displayName: "npm pack"
     workingDirectory: "_release"
 
