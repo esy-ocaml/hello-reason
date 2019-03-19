@@ -10,6 +10,9 @@
       "bin": [
         "Hello"
       ]
+    },
+    "buildEnv": {
+      "ODOC_SYNTAX": "re"
     }
   },
   "scripts": {
