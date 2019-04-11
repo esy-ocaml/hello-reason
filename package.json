@@ -18,16 +18,12 @@
   },
   "dependencies": {
     "@opam/dune": "*",
-    "@reason-native/console": "*",
-    "@reason-native/pastel": "*",
-    "@reason-native/rely": "*",
     "@esy-ocaml/reason": ">= 3.4.0 < 3.5.0",
     "refmterr": "*",
     "ocaml": "4.2.3007"
   },
   "devDependencies": {
     "@opam/merlin": "*",
-    "ocaml": "4.2.3007",
-    "@opam/odoc": "*"
+    "ocaml": "4.2.3007"
   }
 }
