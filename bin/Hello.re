@@ -1,2 +1,2 @@
-Console.log("Running Test Program:");
-let () = print_endline(Lib.Util.hello());
+Lib.Util.hello();
+let () = print_endline("hello");
