@@ -1,0 +1,15 @@
+parameters:
+  ESY_PREFIX: $(ESY__PREFIX)
+  INSTALL_PADDING: $(INSTALL_PADDING)
+
+# The cache key is built up of the following:
+# We use a string that we can change to bust the cache
+# The string "esy"
+# The string for the OS
+# The hash of the lock file
+steps:
+  - task: CacheBeta@0
+    inputs:
+      key: test_ESY_PREFIX_tar_i_path_cache | esy | $(Agent.OS) | esy.lock/index.json
+      path: ${{ parameters.ESY_PREFIX }}${{ parameters.INSTALL_PADDING }}
+    displayName: Cache esy packages
