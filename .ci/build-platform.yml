@@ -12,17 +12,16 @@ jobs:
       demands: node.js
     timeoutInMinutes: 120 # This is mostly for Windows
     variables:
-      ESY__PREFIX: $(Pipeline.Workspace)/.esy
-      AZP_CACHING_TAR: true
+      ESY__PREFIX: ${{ parameters.ESY__PREFIX }}
+      AZP_CACHING_TAR: ${{ parameters.AZP_CACHING_TAR }}
 
     steps:
       - template: utils/use-node.yml
       - template: utils/use-esy.yml
       - template: cache.yml
         parameters:
-          ESY_PREFIX: $(ESY__PREFIX)
-          INSTALL_PADDING: $(INSTALL_PADDING)
-          
+          ESY_PREFIX: ${{ parameters.ESY__PREFIX }}
+          INSTALL_PADDING: ${{ parameters.INSTALL_PADDING }}
      # - template: utils/restore-build-cache.yml
       - script: "esy install"
         displayName: "esy install"
