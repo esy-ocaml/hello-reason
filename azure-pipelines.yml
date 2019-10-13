@@ -12,7 +12,6 @@ jobs:
       INSTALL_PADDING: "/3______________________________________________________________/i"
       CACHE_FOLDER: $(Pipeline.Workspace)/cache
       ESY__CACHE_INSTALL_PATH: /home/vsts/.esy/3_____________________________________________________________________/i
-      ESY__CACHE_SOURCE_TARBALL_PATH: /home/vsts/.esy/source/i
 
   - template: .ci/build-platform.yml
     parameters:
@@ -22,7 +21,6 @@ jobs:
       INSTALL_PADDING: "/3_______________________________________________/i"
       CACHE_FOLDER: $(Pipeline.Workspace)/cache
       ESY__CACHE_INSTALL_PATH: /Users/vsts/.esy/3____________________________________________________________________/i
-      ESY__CACHE_SOURCE_TARBALL_PATH: /Users/vsts/.esy/source/i
 
   - template: .ci/build-platform.yml
     parameters:
@@ -31,8 +29,7 @@ jobs:
       AZP_CACHING_TAR: true
       INSTALL_PADDING: "\\3_\\i"
       CACHE_FOLDER: $(Pipeline.Workspace)\cache
-      ESY__CACHE_INSTALL_PATH: /C/Users/VssAdministrator/.esy/3_/i
-      ESY__CACHE_SOURCE_TARBALL_PATH: /C/Users/VssAdministrator/.esy/source/i
+      ESY__CACHE_INSTALL_PATH: C:\Users\VssAdministrator\.esy\3_\i
 
   # This job is kept here as we want to have the platform names in the same file
   - job: Release
