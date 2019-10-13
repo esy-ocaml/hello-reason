@@ -1,9 +1,10 @@
 parameters:
   platform: "macOS"
   vmImage: "macOS-10.13"
-  ESY__PREFIX: $(Pipeline.Workspace)/.esy
+  CACHE_FOLDER: $(Pipeline.Workspace)/cache
   AZP_CACHING_TAR: true
-  INSTALL_PADDING: "/3_______________________________________________/i"
+  ESY__CACHE_INSTALL_PATH: /Users/vsts/.esy/3____________________________________________________________________/i
+  ESY__CACHE_SOURCE_TARBALL_PATH: /Users/vsts/.esy/source/i
 
 jobs:
   - job: ${{ parameters.platform }}
@@ -12,16 +13,15 @@ jobs:
       demands: node.js
     timeoutInMinutes: 120 # This is mostly for Windows
     variables:
-      ESY__PREFIX: ${{ parameters.ESY__PREFIX }}
       AZP_CACHING_TAR: ${{ parameters.AZP_CACHING_TAR }}
+      ESY__CACHE_INSTALL_PATH: ${{ parameters.ESY__CACHE_INSTALL_PATH }}
+      ESY__CACHE_SOURCE_TARBALL_PATH: ${{ parameters.ESY__CACHE_SOURCE_TARBALL_PATH }}
+      CACHE_FOLDER: ${{ parameters.CACHE_FOLDER }}
 
     steps:
       - template: utils/use-node.yml
       - template: utils/use-esy.yml
-      - template: cache.yml
-        parameters:
-          ESY_PREFIX: ${{ parameters.ESY__PREFIX }}
-          INSTALL_PADDING: ${{ parameters.INSTALL_PADDING }}
+      - template: utils/cache.yml
      # - template: utils/restore-build-cache.yml
       - script: "esy install"
         displayName: "esy install"
@@ -38,3 +38,4 @@ jobs:
         inputs:
           PathtoPublish: "_release"
           ArtifactName: ${{ parameters.platform }}
+      - template: utils/prepare-cache.yml

@@ -1,0 +1,3 @@
+steps:
+  - bash: 'mv $(ESY__CACHE_INSTALL_PATH) $(CACHE_FOLDER)'
+    displayName: '[Cache][Publish] Move builds to becached'
