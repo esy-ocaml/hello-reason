@@ -24,7 +24,7 @@ steps:
       ls $(ESY__CACHE_INSTALL_PATH)
       ls $(CACHE_FOLDER)
 
-  - pwsh: Move-Item -Path $(CACHE_FOLDER) -Destination $(ESY__CACHE_INSTALL_PATH)
+  - pwsh: Move-Item -Path $(CACHE_FOLDER)/* -Destination $(ESY__CACHE_INSTALL_PATH)
     displayName: '[Cache][Restore] Move downloaded cache in place'
     condition: eq(variables.CACHE_RESTORED, 'true')
 
