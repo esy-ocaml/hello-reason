@@ -19,7 +19,7 @@ jobs:
       ESY__CACHE_SOURCE_TARBALL_PATH: ${{ parameters.ESY__CACHE_SOURCE_TARBALL_PATH }}
 
     steps: 
-      - script: echo '##vso[task.setvariable variable=CI_CACHE_BRANCH_NAME]'$(System.PullRequest.TargetBranch)
+      - script: echo '##vso[task.setvariable variable=CI_CACHE_BRANCH_NAME]$(System.PullRequest.TargetBranch)'
         displayName: "Save cacheBranchName variable"
       - bash: echo "$(System.PullRequest.TargetBranch) - $SYSTEM_PULLREQUEST_TARGETBRANCH - $CI_CACHE_BRANCH_NAME"
         displayName: "Print CI_CACHE_BRANCH_NAME variable"
