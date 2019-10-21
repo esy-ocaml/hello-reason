@@ -21,7 +21,7 @@ jobs:
     steps: 
       - script: echo '##vso[task.setvariable variable=CI_CACHE_BRANCH_NAME]'$(System.PullRequest.TargetBranch)
         displayName: "Save cacheBranchName variable"
-      - script: echo "$(System.PullRequest.TargetBranch) - $SYSTEM_PULLREQUEST_TARGETBRANCH - $CI_CACHE_BRANCH_NAME"
+      - bash: echo "$(System.PullRequest.TargetBranch) - $SYSTEM_PULLREQUEST_TARGETBRANCH - $CI_CACHE_BRANCH_NAME"
         displayName: "Print CI_CACHE_BRANCH_NAME variable"
       - template: utils/use-node.yml
       - template: utils/use-esy.yml
