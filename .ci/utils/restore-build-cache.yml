@@ -17,7 +17,7 @@ steps:
         PROJ="$SYSTEM_TEAMPROJECT"
         ART_NAME="cache-${AGENT_OS}-install"
         fetchLatestBuild() {
-          BRANCH="branchName=refs%2Fheads%2F${CI_CACHE_BRANCH_NAME}"
+          BRANCH="branchName=refs%2Fheads%2F${SYSTEM_PULLREQUEST_TARGETBRANCH}"
           FILTER='deletedFilter=excludeDeleted&statusFilter=completed&resultFilter=succeeded'
           LATEST='queryOrder=finishTimeDescending&$top=1'
           REST_BUILDS="$REST_BASE/$PROJ/_apis/build/builds?${FILTER}&${BRANCH}&${LATEST}&api-version=4.1"
