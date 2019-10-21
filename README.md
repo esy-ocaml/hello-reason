@@ -55,3 +55,22 @@ no dependencies.
     % esy npm-release
     % cd _release
     % npm publish
+
+## Continuous Integration:
+`hello-reason` includes CI configuration for Azure
+[DevOps](https://dev.azure.com) pipelines out of the box.
+
+- Create your Azure DevOps account.
+- Add a new project, and point that new Azure DevOps project to your github
+  repo that includes the CI (`./azure-pipelines.yml` and the `.ci/` directory)
+  from `hello-reason`.
+- Create a new Pipeline within that project.
+  - When asked how to configure the new pipeline, select the option to use
+    existing configuration inside the repo.
+
+The CI is configured to build caches on the `master` branch, and also any
+branch named one of (`global`, `release-*`, `releases-*`). That means that pull
+requests to any branch with those names will be fast, once you have landed at
+least one commit to that branch. The first time you submit a pull request to
+one of those branches, the builds will be slow but then subsequent pull
+requests will be faster once a pull request is merged to it.
