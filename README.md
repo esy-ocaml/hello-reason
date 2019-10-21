@@ -69,7 +69,7 @@ no dependencies.
     existing configuration inside the repo.
 
 The CI is configured to build caches on the `master` branch, and also any
-branch named one of (`global`, `release`, `release/*`). That means that pull
+branch named one of (`global`, `release-*`, `releases-*`). That means that pull
 requests to any branch with those names will be fast, once you have landed at
 least one commit to that branch. The first time you submit a pull request to
 one of those branches, the builds will be slow but then subsequent pull

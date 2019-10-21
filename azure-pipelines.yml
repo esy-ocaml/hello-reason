@@ -3,9 +3,9 @@ name: Build npm release
 trigger:
   - master
   - global
-  - release
-  - releases/*
-  - feature/*
+  - release-*
+  - releases-*
+  - feature-*
 
 jobs:
   - template: .ci/build-platform.yml
