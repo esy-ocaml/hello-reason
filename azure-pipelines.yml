@@ -1,7 +1,7 @@
 name: Build npm release
 
 trigger:
-  - master
+  - *
 
 jobs:
   - template: .ci/build-platform.yml
