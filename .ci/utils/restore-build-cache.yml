@@ -11,7 +11,7 @@ steps:
     continueOnError: true
     inputs:
       targetType: 'inline' # Optional. Options: filePath, inline
-      script: |
+      bash: |
         # If org name is reasonml then REST_BASE will be: https://dev.azure.com/reasonml/
         REST_BASE="${SYSTEM_TEAMFOUNDATIONCOLLECTIONURI}"
         PROJ="$SYSTEM_TEAMPROJECT"
