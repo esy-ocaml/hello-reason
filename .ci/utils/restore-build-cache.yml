@@ -11,13 +11,14 @@ steps:
     continueOnError: true
     inputs:
       targetType: 'inline' # Optional. Options: filePath, inline
-      bash: |
+      script: |
         # If org name is reasonml then REST_BASE will be: https://dev.azure.com/reasonml/
         REST_BASE="${SYSTEM_TEAMFOUNDATIONCOLLECTIONURI}"
         PROJ="$SYSTEM_TEAMPROJECT"
         ART_NAME="cache-${AGENT_OS}-install"
         fetchLatestBuild() {
-          BRANCH="branchName=refs%2Fheads%2F${SYSTEM_PULLREQUEST_TARGETBRANCH}"
+          PREFIX="branchName=refs%2Fheads%2F"
+          BRANCH=${PREFIX}${SYSTEM_PULLREQUEST_TARGETBRANCH}
           FILTER='deletedFilter=excludeDeleted&statusFilter=completed&resultFilter=succeeded'
           LATEST='queryOrder=finishTimeDescending&$top=1'
           REST_BUILDS="$REST_BASE/$PROJ/_apis/build/builds?${FILTER}&${BRANCH}&${LATEST}&api-version=4.1"
