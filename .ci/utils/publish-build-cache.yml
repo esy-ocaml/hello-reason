@@ -5,10 +5,10 @@ steps:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: '[Cache][Publish] Create cache directory'
 
-  - bash: cd $ESY__CACHE_INSTALL_PATH && tar -czf $(Build.StagingDirectory)/esy-cache.tar .
-    workingDirectory: ''
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
-    displayName: '[Cache][Publish] Tar esy cache directory'
+  # - bash: cd $ESY__CACHE_INSTALL_PATH && tar -czf $(Build.StagingDirectory)/esy-cache.tar .
+  #   workingDirectory: ''
+  #   condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
+  #   displayName: '[Cache][Publish] Tar esy cache directory'
 
   # - bash: 'cd $(ESY__NPM_ROOT) && tar -czf $(Build.StagingDirectory)/npm-cache.tar .'
   #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))

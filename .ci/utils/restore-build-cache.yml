@@ -47,16 +47,26 @@ steps:
             echo "Build badge for build that produced the cache: $LATEST_BUILD_BADGE"
             echo "Build artifact from build that produced the cache: $LATEST_ART_URL"
             echo "Restoring build cache into:"
-            echo $ESY__CACHE_INSTALL_PATH
             mkdir -p $ESY__CACHE_INSTALL_PATH
             if [ "$AGENT_OS" == "Windows_NT" ]; then
               # tar on windows sees staging directory is D:/ as remote host.
               # need to convert it to unix ironically
-              STAGE_DIR="$( cygpath --unix ${BUILD_STAGINGDIRECTORY} )"
+              # not sure why single quotes are needed.
+              STAGE_DIR=$( cygpath --unix ${BUILD_STAGINGDIRECTORY} )
             else
               STAGE_DIR="${BUILD_STAGINGDIRECTORY}"
             fi
-            cd $ESY__CACHE_INSTALL_PATH && tar -xf "${STAGE_DIR}/cache-${AGENT_OS}-install/esy-cache.tar" -C .
+            echo $ESY__CACHE_INSTALL_PATH
+            echo $STAGE_DIR
+            cd $STAGE_DIR
+            if [ -d _export ]; then
+              echo "Cached builds to import"
+              ls _export
+              esy import-dependencies ./_export
+            else
+              echo "No _export directory to import from build cache"
+              ls $STAGE_DIR
+            fi
           fi
         }
         fetchArtifactURL
