@@ -14,10 +14,19 @@ jobs:
       STAGING_DIRECTORY: ${{ parameters.STAGING_DIRECTORY }}
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
+/Users/jwalke/.esy/3
+/Users/jwalke/.esy/3__________________________________________________________________
+      
+
     steps: 
       # reate a variable
       - bash: |
-          ESY__CACHE_INSTALL_PATH="$(find $HOME/.esy/ -regex '.*3_*/i' -type d -maxdepth 2)"
+          HOME_ESY3="$HOME/.esy/3"
+          HOME_ESY3_LEN=${#HOME_ESY}
+          $SIXTY_SIX="66"
+          $NUM_UNDERS=echo "$(($SIXTY_SIX+$HOME_ESY3_LEN))"
+          $UNDERS="$(seq -s_ ${SIXTY_SIX}|tr -d '[:digit:]')"
+          ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
           echo "##vso[task.setvariable variable=esy__cache_install_path]$ESY__CACHE_INSTALL_PATH"
       - bash: echo Publishing Build Cache From $(esy__cache_install_path)
         displayName: 'Debugging ESY__CACHE_INSTALL_PATH var'
