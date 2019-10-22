@@ -3,8 +3,6 @@ parameters:
   vmImage: "macOS-10.13"
   STAGING_DIRECTORY: $(Build.StagingDirectory)
   STAGING_DIRECTORY_UNIX: $(Build.StagingDirectory)
-  ESY__CACHE_INSTALL_PATH: /Users/vsts/.esy/3____________________________________________________________________/i
-  ESY__CACHE_SOURCE_TARBALL_PATH: /Users/vsts/.esy/source/i
 
 jobs:
   - job: ${{ parameters.platform }}
