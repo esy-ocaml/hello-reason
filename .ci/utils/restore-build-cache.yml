@@ -1,7 +1,7 @@
 # Steps for restoring project cache
 
 steps:
-  - bash: 'mkdir -p $(STAGING_DIRECTORY_UNIX)'
+  - bash: 'mkdir -p $(Build.StagingDirectory)'
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
     displayName: '[Cache][Publish] Create cache directory'
 
@@ -39,8 +39,8 @@ steps:
           then
             echo "No latest artifact for merge-target branch found at URL $REST_ART"
           else
-            curl "$LATEST_ART_URL" > "${STAGING_DIRECTORY_UNIX}/$ART_NAME.zip"
-            cd $STAGING_DIRECTORY_UNIX
+            curl "$LATEST_ART_URL" > "${BUILD_STAGINGDIRECTORY}/$ART_NAME.zip"
+            cd $BUILD_STAGINGDIRECTORY
             unzip "$ART_NAME.zip"
             echo "Using Dependency cache for buildID: $LATEST_BUILD_ID"
             echo "Build log for build that produced the cache: $LATEST_BUILD_PAGE"
@@ -49,7 +49,14 @@ steps:
             echo "Restoring build cache into:"
             echo $ESY__CACHE_INSTALL_PATH
             mkdir -p $ESY__CACHE_INSTALL_PATH
-            cd $ESY__CACHE_INSTALL_PATH && tar -xf "${STAGING_DIRECTORY_UNIX}/cache-${AGENT_OS}-install/esy-cache.tar" -C .
+            if [ "$AGENT_OS" == "Windows_NT" ]; then
+              # tar on windows sees staging directory is D:/ as remote host.
+              # need to convert it to unix ironically
+              STAGE_DIR="$( cygpath --unix ${BUILD_STAGINGDIRECTORY} )"
+            else
+              STAGE_DIR="${BUILD_STAGINGDIRECTORY}"
+            fi
+            cd $ESY__CACHE_INSTALL_PATH && tar -xf "${STAGE_DIR}/cache-${AGENT_OS}-install/esy-cache.tar" -C .
           fi
         }
         fetchArtifactURL
@@ -58,6 +65,6 @@ steps:
 
   - bash: 'rm -rf *'
     continueOnError: true
-    workingDirectory: '$(STAGING_DIRECTORY)'
+    workingDirectory: '$(Build.StagingDirectory)'
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
     displayName: '[Cache][Restore] Clean up'
