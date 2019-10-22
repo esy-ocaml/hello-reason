@@ -15,25 +15,19 @@ jobs:
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
     steps: 
-      # reate a variable
       - bash: |
-          # Desired length of path with underscores
+          # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
           DESIRED_LEN="86"
           HOME_ESY3="$HOME/.esy/3"
           HOME_ESY3_LEN=${#HOME_ESY3}
           NUM_UNDERS=$(echo "$(($DESIRED_LEN-$HOME_ESY3_LEN))")
-          echo "NUM UNDERS: $NUM_UNDERS"
           UNDERS=$(printf "%-${NUM_UNDERS}s" "_")
           UNDERS="${UNDERS// /_}"
-          echo "UNDERS: $UNDERS"
           THE_ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
           echo "THE_ESY__CACHE_INSTALL_PATH: $THE_ESY__CACHE_INSTALL_PATH"
           # This will be exposed as an env var ESY__CACHE_INSTALL_PATH, or an
           # Azure var esy__cache_install_path
-          echo "HOME_ESY3_LEN $HOME_ESY3_LEN"
           echo "##vso[task.setvariable variable=esy__cache_install_path]$THE_ESY__CACHE_INSTALL_PATH"
-      - bash: echo Publishing Build Cache From $(esy__cache_install_path)
-        displayName: 'Debugging ESY__CACHE_INSTALL_PATH var'
       - bash: env
         displayName: "Print environment"
       - template: utils/use-node.yml

@@ -17,9 +17,8 @@ steps:
   - task: PublishBuildArtifacts@1
     displayName: '[Cache][Publish] Upload tarball'
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
-    # TODO: Include the Build.SourceBranch variable when publishing.
-    # TODO: Include the System.PullRequest.TargetBranch variable when pulling.
-    #       but these are tricky because we need to convert `/` into `__` or something.
+    # TODO: The CI Build caches are pulled down by the last successful buildID
+    # for the target branch.
     inputs:
         pathToPublish: '$(STAGING_DIRECTORY)'
         artifactName: 'cache-$(Agent.OS)-install'
