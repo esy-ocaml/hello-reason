@@ -10,17 +10,15 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
       demands: node.js
     timeoutInMinutes: 120 # This is mostly for Windows
-    # Create a variable
-    - bash: |
-        ESY__CACHE_INSTALL_PATH="$(find $HOME/.esy/ -regex '.*3_*/i' -type d -maxdepth 2)"
-        echo "##vso[task.setvariable variable=esy__cache_install_path]$ESY__CACHE_INSTALL_PATH"
     variables:
       STAGING_DIRECTORY: ${{ parameters.STAGING_DIRECTORY }}
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
     steps: 
-      - bash: export ESY__CACHE_INSTALL_PATH="$(find $HOME/.esy/ -regex '.*3_*/i' -type d -maxdepth 2)"
-        displayName: 'setting ESY__CACHE_INSTALL_PATH var'
+      # reate a variable
+      - bash: |
+          ESY__CACHE_INSTALL_PATH="$(find $HOME/.esy/ -regex '.*3_*/i' -type d -maxdepth 2)"
+          echo "##vso[task.setvariable variable=esy__cache_install_path]$ESY__CACHE_INSTALL_PATH"
       - bash: echo Publishing Build Cache From $(esy__cache_install_path)
         displayName: 'Debugging ESY__CACHE_INSTALL_PATH var'
       - bash: env
