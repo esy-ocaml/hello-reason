@@ -14,16 +14,21 @@ jobs:
       STAGING_DIRECTORY: ${{ parameters.STAGING_DIRECTORY }}
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
+      /home/vsts/.esy/3_________________________________________________________________/i
+      /Users/jwalke/.esy/3__________________________________________________________________
     steps: 
       # reate a variable
       - bash: |
+          # Desired length of path with underscores
+          DESIRED_LEN="82"
           HOME_ESY3="$HOME/.esy/3"
           HOME_ESY3_LEN=${#HOME_ESY}
-          SIXTY_SIX="66"
-          NUM_UNDERS=echo "$(($SIXTY_SIX-$HOME_ESY3_LEN))"
-          UNDERS="$(seq -s_ ${SIXTY_SIX}|tr -d '[:digit:]')"
-          ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
-          echo "##vso[task.setvariable variable=esy__cache_install_path]$ESY__CACHE_INSTALL_PATH"
+          NUM_UNDERS=echo "$(($DESIRED_LEN-$HOME_ESY3_LEN))"
+          UNDERS="$(seq -s_ ${NUM_UNDERS}|tr -d '[:digit:]')"
+          THE_ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
+          # This will be exposed as an env var ESY__CACHE_INSTALL_PATH, or an
+          # Azure var esy__cache_install_path
+          echo "##vso[task.setvariable variable=esy__cache_install_path]$THE_ESY__CACHE_INSTALL_PATH"
       - bash: echo Publishing Build Cache From $(esy__cache_install_path)
         displayName: 'Debugging ESY__CACHE_INSTALL_PATH var'
       - bash: env

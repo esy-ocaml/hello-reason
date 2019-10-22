@@ -46,7 +46,6 @@ steps:
             echo "Build log for build that produced the cache: $LATEST_BUILD_PAGE"
             echo "Build badge for build that produced the cache: $LATEST_BUILD_BADGE"
             echo "Build artifact from build that produced the cache: $LATEST_ART_URL"
-            export ESY__CACHE_INSTALL_PATH=`find $HOME/.esy/ -regex '.*3_*/i' -type d -maxdepth 2`
             echo "Restoring build cache into:"
             echo $ESY__CACHE_INSTALL_PATH
             mkdir -p $ESY__CACHE_INSTALL_PATH
