@@ -5,9 +5,13 @@ steps:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: '[Cache][Publish] Create cache directory'
 
-  - bash: pwd && esy export-dependencies && mv _export $(Build.StagingDirectory) && ls $(Build.StagingDirectory)
+  - script: "esy export-dependencies"
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
-    displayName: '[Cache][Publish] esy export-dependencies'
+    displayName: "esy export-dependencies"
+
+  - bash: mv _export $(Build.StagingDirectory) && ls $(Build.StagingDirectory)
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
+    displayName: '[Cache][Publish] move export to staging dir'
 
   # - bash: cd $ESY__CACHE_INSTALL_PATH && tar -czf $(Build.StagingDirectory)/esy-cache.tar .
   #   workingDirectory: ''
