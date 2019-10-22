@@ -1,8 +1,6 @@
 parameters:
   platform: "macOS"
   vmImage: "macOS-10.13"
-  STAGING_DIRECTORY: $(Build.StagingDirectory)
-  STAGING_DIRECTORY_UNIX: $(Build.StagingDirectory)
 
 jobs:
   - job: ${{ parameters.platform }}
@@ -10,9 +8,6 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
       demands: node.js
     timeoutInMinutes: 120 # This is mostly for Windows
-    variables:
-      STAGING_DIRECTORY: ${{ parameters.STAGING_DIRECTORY }}
-      STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
     steps: 
       - bash: |
           # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
