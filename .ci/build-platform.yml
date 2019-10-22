@@ -14,10 +14,6 @@ jobs:
       STAGING_DIRECTORY: ${{ parameters.STAGING_DIRECTORY }}
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
-/Users/jwalke/.esy/3
-/Users/jwalke/.esy/3__________________________________________________________________
-      
-
     steps: 
       # reate a variable
       - bash: |
