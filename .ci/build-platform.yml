@@ -17,10 +17,10 @@ jobs:
       # reate a variable
       - bash: |
           # Desired length of path with underscores
-          DESIRED_LEN="82"
+          DESIRED_LEN="86"
           HOME_ESY3="$HOME/.esy/3"
-          HOME_ESY3_LEN=${#HOME_ESY}
-          NUM_UNDERS=echo "$(($DESIRED_LEN-$HOME_ESY3_LEN))"
+          HOME_ESY3_LEN=${#HOME_ESY3}
+          NUM_UNDERS=$(echo "$(($DESIRED_LEN-$HOME_ESY3_LEN))")
           UNDERS="$(seq -s_ ${NUM_UNDERS}|tr -d '[:digit:]')"
           THE_ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
           # This will be exposed as an env var ESY__CACHE_INSTALL_PATH, or an
