@@ -24,7 +24,7 @@ jobs:
           HOME_ESY3="$HOME/.esy/3"
           HOME_ESY3_LEN=${#HOME_ESY}
           $SIXTY_SIX="66"
-          $NUM_UNDERS=echo "$(($SIXTY_SIX+$HOME_ESY3_LEN))"
+          $NUM_UNDERS=echo "$(($SIXTY_SIX-$HOME_ESY3_LEN))"
           $UNDERS="$(seq -s_ ${SIXTY_SIX}|tr -d '[:digit:]')"
           ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
           echo "##vso[task.setvariable variable=esy__cache_install_path]$ESY__CACHE_INSTALL_PATH"
