@@ -13,7 +13,7 @@ jobs:
     variables:
       STAGING_DIRECTORY: ${{ parameters.STAGING_DIRECTORY }}
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
-      
+
     steps: 
       # reate a variable
       - bash: |
@@ -23,7 +23,8 @@ jobs:
           HOME_ESY3_LEN=${#HOME_ESY3}
           NUM_UNDERS=$(echo "$(($DESIRED_LEN-$HOME_ESY3_LEN))")
           echo "NUM UNDERS: $NUM_UNDERS"
-          UNDERS="$(seq -s_ ${NUM_UNDERS}|tr -d '[:digit:]')"
+          UNDERS=$(printf "%-${NUM_UNDERS}s" "_")
+          UNDERS="${UNDERS// /_}"
           echo "UNDERS: $UNDERS"
           THE_ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
           echo "THE_ESY__CACHE_INSTALL_PATH: $THE_ESY__CACHE_INSTALL_PATH"
