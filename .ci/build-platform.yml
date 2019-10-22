@@ -15,8 +15,6 @@ jobs:
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
     steps: 
-      - bash: echo "$(System.PullRequest.TargetBranch) - $SYSTEM_PULLREQUEST_TARGETBRANCH"
-        displayName: "Print CI_CACHE_BRANCH_NAME variable"
       - bash: env
         displayName: "Print environment"
       - template: utils/use-node.yml
