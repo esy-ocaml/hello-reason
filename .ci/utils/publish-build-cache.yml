@@ -5,7 +5,7 @@ steps:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: '[Cache][Publish] Create cache directory'
 
-  - bash: export ESY__CACHE_INSTALL_PATH=$( echo $HOME/.esy/3_*/i )
+  - bash: export ESY__CACHE_INSTALL_PATH=$( find $HOME/.esy/ -regex '.*3_*/i' -type d -maxdepth 2 )
     displayName: 'setting ESY__CACHE_INSTALL_PATH var'
 
   - bash: echo Publishing Build Cache From $ESY__CACHE_INSTALL_PATH

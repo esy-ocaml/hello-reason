@@ -15,7 +15,7 @@ jobs:
       STAGING_DIRECTORY_UNIX: ${{ parameters.STAGING_DIRECTORY_UNIX }}
 
     steps: 
-      - bash: export ESY__CACHE_INSTALL_PATH=$( bash -c 'echo $HOME/.esy/3_*/i' )
+      - bash: export ESY__CACHE_INSTALL_PATH=$( find ~/.esy/ -regex '.*3_*/i' -type d -maxdepth 2 )
         displayName: 'setting ESY__CACHE_INSTALL_PATH var'
       - bash: echo Publishing Build Cache From $ESY__CACHE_INSTALL_PATH
         displayName: 'Debugging ESY__CACHE_INSTALL_PATH var'
