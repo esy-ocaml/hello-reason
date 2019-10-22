@@ -58,7 +58,15 @@ steps:
             fi
             echo $ESY__CACHE_INSTALL_PATH
             echo $STAGE_DIR
-            cd $ESY__CACHE_INSTALL_PATH && tar -xf "${STAGE_DIR}/cache-${AGENT_OS}-install/esy-cache.tar" -C .
+            cd $STAGE_DIR
+            if [ -d _export ]; then
+              echo "Cached builds to import"
+              ls _export
+              esy import-dependencies ./_export
+            else
+              echo "No _export directory to import from build cache"
+              ls $STAGE_DIR
+            fi
           fi
         }
         fetchArtifactURL
