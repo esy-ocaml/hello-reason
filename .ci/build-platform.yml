@@ -25,6 +25,7 @@ jobs:
           THE_ESY__CACHE_INSTALL_PATH=${HOME_ESY3}${UNDERS}/i
           # This will be exposed as an env var ESY__CACHE_INSTALL_PATH, or an
           # Azure var esy__cache_install_path
+          echo "HOME_ESY3_LEN $HOME_ESY3_LEN"
           echo "##vso[task.setvariable variable=esy__cache_install_path]$THE_ESY__CACHE_INSTALL_PATH"
       - bash: echo Publishing Build Cache From $(esy__cache_install_path)
         displayName: 'Debugging ESY__CACHE_INSTALL_PATH var'
