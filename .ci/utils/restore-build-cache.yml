@@ -5,6 +5,8 @@ steps:
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
     displayName: '[Cache][Publish] Create cache directory'
 
+  # TODO: This can be done in parallel with installing node, and esy
+  # (which would save a bunch of time on windows)
   - task: Bash@3
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
     displayName: '[Cache][Restore] Restoring build cache using REST API'
@@ -59,6 +61,7 @@ steps:
               # import-build allows importing before esy install runs.
               # unlike import-dependencies
               echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
+              $ESY_BIN_LOCATION import-build _import/*
             else
               echo "No _export directory to import from build cache"
               ls $BUILD_STAGINGDIRECTORY
@@ -70,10 +73,10 @@ steps:
         fetchArtifactURL
         downloadArtifactAndContinue
       
-  - script: esy import-build _import/*
-    continueOnError: true
-    condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
-    displayName: "esy import-dependencies (build cache from CI cache)"
+  # - script: esy import-build _import/*
+  #   continueOnError: true
+  #   condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
+  #   displayName: "esy import-dependencies (build cache from CI cache)"
 
   - bash: 'rm -rf _import'
     continueOnError: true
