@@ -9,7 +9,7 @@ steps:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: "esy export-dependencies"
 
-  - bash: mv _export $(Build.StagingDirectory) && ls $(Build.StagingDirectory)
+  - bash: pwd && ls _export/* && mv _export $(Build.StagingDirectory) && ls $(Build.StagingDirectory)/_export/*
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: '[Cache][Publish] move export to staging dir'
 
