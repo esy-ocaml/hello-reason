@@ -71,7 +71,7 @@ steps:
       
   - script: esy import-build $(esy_export_dir_to_import)/*
     continueOnError: true
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
+    condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
     displayName: "esy export-dependencies"
 
   - bash: 'rm -rf *'
