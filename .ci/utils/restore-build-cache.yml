@@ -67,13 +67,14 @@ steps:
                 # glob will result in windows drive based file paths which tar
                 # cannot handle! Also need to use esy.cmd when running esy from
                 # within the cygwin environment that Azure provides.
-                FILES=./_import/*
+                cd ./_import
+                FILES=*
                 for f in $FILES
                 do
                   echo "Trying to import $f"
-                  $f = $(cygpath --unix --absolute $f)
                   esy.cmd import-build "$f"
                 done
+                cd $PROJECT_DIR
               else
                 esy import-build ./_import/*
               fi
@@ -89,7 +90,7 @@ steps:
         fetchArtifactURL
         downloadArtifactAndContinue
       
-  - powershell: esy import-build ./_import/*
+  - powershell: esy.cmd import-build ./_import/*
     continueOnError: true
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
     displayName: "esy import-dependencies (build cache from CI cache)"
