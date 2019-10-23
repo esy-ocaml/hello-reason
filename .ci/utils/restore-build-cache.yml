@@ -40,6 +40,7 @@ steps:
             echo "No latest artifact for merge-target branch found at URL $REST_ART"
           else
             curl "$LATEST_ART_URL" > "${BUILD_STAGINGDIRECTORY}/$ART_NAME.zip"
+            PROJECT_DIR=$PWD
             cd $BUILD_STAGINGDIRECTORY
             unzip "$ART_NAME.zip"
             echo "Using Dependency cache for buildID: $LATEST_BUILD_ID"
@@ -52,11 +53,13 @@ steps:
             if [[ -d ${ART_NAME}/_export ]]; then
               echo "Cached builds to import"
               ls ${ART_NAME}/_export
-              esy import-dependencies ${ART_NAME}/_export
+              cd $PROJECT_DIR
+              esy import-dependencies ${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export
             else
               echo "No _export directory to import from build cache"
               ls $BUILD_STAGINGDIRECTORY
               ls .
+              cd $PROJECT_DIR
             fi
           fi
         }
