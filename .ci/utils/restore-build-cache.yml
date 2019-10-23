@@ -54,7 +54,9 @@ steps:
               echo "Cached builds to import"
               ls ${ART_NAME}/_export
               cd $PROJECT_DIR
-              esy import-dependencies ${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export
+              # import-build allows importing before esy install runs.
+              # unlike import-dependencies
+              esy import-build ${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export/*
             else
               echo "No _export directory to import from build cache"
               ls $BUILD_STAGINGDIRECTORY
