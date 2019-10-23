@@ -52,12 +52,13 @@ steps:
             echo $ESY__CACHE_INSTALL_PATH
             echo "##vso[task.setvariable variable=esy_export_dir_to_import]${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export"
             if [[ -d ${ART_NAME}/_export ]]; then
-              echo "Cached builds to import"
-              ls ${ART_NAME}/_export
+              mv ${ART_NAME}/_export $PROJECT_DIR/_import
               cd $PROJECT_DIR
+              echo "Cached builds to import"
+              ls ./_import
               # import-build allows importing before esy install runs.
               # unlike import-dependencies
-              echo "Going to import builds from ${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export in the next build step"
+              echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
             else
               echo "No _export directory to import from build cache"
               ls $BUILD_STAGINGDIRECTORY
@@ -69,13 +70,18 @@ steps:
         fetchArtifactURL
         downloadArtifactAndContinue
       
-  - script: esy import-build $(esy_export_dir_to_import)/*
+  - script: esy import-build _import/*
     continueOnError: true
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
-    displayName: "esy export-dependencies"
+    displayName: "esy import-dependencies (build cache from CI cache)"
+
+  - bash: 'rm -rf _import'
+    continueOnError: true
+    condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
+    displayName: 'Remove import directory'
 
   - bash: 'rm -rf *'
     continueOnError: true
     workingDirectory: '$(Build.StagingDirectory)'
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
-    displayName: '[Cache][Restore] Clean up'
+    displayName: '[Cache][Restore] Clean up staging dir'
