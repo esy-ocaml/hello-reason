@@ -72,7 +72,7 @@ steps:
                 do
                   echo "Trying to import $f"
                   $f = $(cygpath --unix --absolute $f)
-                  esy.cmd import-build $f
+                  esy.cmd import-build "$f"
                 done
               else
                 esy import-build ./_import/*
