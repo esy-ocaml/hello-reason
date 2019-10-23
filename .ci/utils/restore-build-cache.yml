@@ -61,10 +61,18 @@ steps:
               # import-build allows importing before esy install runs.
               # unlike import-dependencies
               echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
-              esy import-build ./_import/*
+              if [ "$AGENT_OS" == "Windows_NT" ]; then
+                echo "Trying the cmd"
+                FILES=./_import/*
+                for f in $FILES
+                do
+                  echo "Trying to import $f"
+                  esy.cmd import-build $f
+                done
+              else
+                esy import-build ./_import/*
+              fi
               
-              echo "Trying the cmd"
-              esy.cmd import-build ./_import/*
             else
               echo "No _export directory to import from build cache"
               ls $BUILD_STAGINGDIRECTORY
