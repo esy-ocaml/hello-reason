@@ -63,10 +63,15 @@ steps:
               echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
               if [ "$AGENT_OS" == "Windows_NT" ]; then
                 echo "Trying the cmd"
+                # Have to import the builds one by one in windows otherwise a
+                # glob will result in windows drive based file paths which tar
+                # cannot handle! Also need to use esy.cmd when running esy from
+                # within the cygwin environment that Azure provides.
                 FILES=./_import/*
                 for f in $FILES
                 do
                   echo "Trying to import $f"
+                  $f = $(cygpath --unix --absolute $f)
                   esy.cmd import-build $f
                 done
               else
