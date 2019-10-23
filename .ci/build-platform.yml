@@ -30,7 +30,7 @@ jobs:
           # This will be exposed as an env var ESY__CACHE_INSTALL_PATH, or an
           # Azure var esy__cache_install_path
           echo "##vso[task.setvariable variable=esy__cache_install_path]$THE_ESY__CACHE_INSTALL_PATH"
-      - bash: echo "##vso[task.setvariable variable=esy_bin_location]$(realpath $(which esy))"
+      - bash: echo '##vso[task.setvariable variable=esy_bin_location]'$(realpath $(which esy))"
         displayName: "Find esy binary"
       - bash: echo $ESY_BIN_LOCATION
         displayName: "Print esy bin location"
