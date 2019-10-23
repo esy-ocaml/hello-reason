@@ -50,13 +50,14 @@ steps:
             echo "Restoring build cache into:"
             mkdir -p $ESY__CACHE_INSTALL_PATH
             echo $ESY__CACHE_INSTALL_PATH
+            echo "##vso[task.setvariable variable=esy_export_dir_to_import]${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export"
             if [[ -d ${ART_NAME}/_export ]]; then
               echo "Cached builds to import"
               ls ${ART_NAME}/_export
               cd $PROJECT_DIR
               # import-build allows importing before esy install runs.
               # unlike import-dependencies
-              esy import-build ${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export/*
+              echo "Going to import builds from ${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export in the next build step"
             else
               echo "No _export directory to import from build cache"
               ls $BUILD_STAGINGDIRECTORY
@@ -68,6 +69,10 @@ steps:
         fetchArtifactURL
         downloadArtifactAndContinue
       
+  - script: esy import-build $(esy_export_dir_to_import)/*
+    continueOnError: true
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
+    displayName: "esy export-dependencies"
 
   - bash: 'rm -rf *'
     continueOnError: true
