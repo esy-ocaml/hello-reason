@@ -49,7 +49,7 @@ steps:
             echo "Restoring build cache into:"
             mkdir -p $ESY__CACHE_INSTALL_PATH
             echo $ESY__CACHE_INSTALL_PATH
-            if [ -d _export ]; then
+            if [[ -d ${ART_NAME}/_export ]]; then
               echo "Cached builds to import"
               ls ${ART_NAME}/_export
               esy import-dependencies ${ART_NAME}/_export
