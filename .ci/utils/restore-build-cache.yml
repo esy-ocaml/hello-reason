@@ -54,48 +54,50 @@ steps:
             echo $ESY__CACHE_INSTALL_PATH
             echo "##vso[task.setvariable variable=esy_export_dir_to_import]${BUILD_STAGINGDIRECTORY}/${ART_NAME}/_export"
             if [[ -d ${ART_NAME}/_export ]]; then
-              mv ${ART_NAME}/_export $PROJECT_DIR/_import
-              cd $PROJECT_DIR
-              echo "Cached builds to import"
-              ls ./_import
+              echo "Cached builds to import from ${ART_NAME}/_export in next CI step"
+              ls ${ART_NAME}/_export
               # import-build allows importing before esy install runs.
               # unlike import-dependencies
-              echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
-              if [ "$AGENT_OS" == "Windows_NT" ]; then
-                esy.cmd import-dependencies "_import"
-                #   echo "Trying the cmd"
-                #   # Have to import the builds one by one in windows otherwise a
-                #   # glob will result in windows drive based file paths which tar
-                #   # cannot handle! Also need to use esy.cmd when running esy from
-                #   # within the cygwin environment that Azure provides.
-                #   cd ./_import
-                #   FILES=*
-                #   for f in $FILES
-                #   do
-                #     echo "Trying to import $f"
-                #     esy.cmd import-build "$f"
-                #   done
-                #   cd $PROJECT_DIR
-              else
-                esy import-dependencies ./_import
-              fi
+              # if [ "$AGENT_OS" == "Windows_NT" ]; then
+              #   esy.cmd import-dependencies "_import"
+              #   #   echo "Trying the cmd"
+              #   #   # Have to import the builds one by one in windows otherwise a
+              #   #   # glob will result in windows drive based file paths which tar
+              #   #   # cannot handle! Also need to use esy.cmd when running esy from
+              #   #   # within the cygwin environment that Azure provides.
+              #   #   cd ./_import
+              #   #   FILES=*
+              #   #   for f in $FILES
+              #   #   do
+              #   #     echo "Trying to import $f"
+              #   #     esy.cmd import-build "$f"
+              #   #   done
+              #   #   cd $PROJECT_DIR
+              # else
+              #   esy import-dependencies ./_import
+              # fi
               
             else
               echo "No _export directory to import from build cache"
               echo "Here's the contents of build cache:"
-              find ${BUILD_STAGINGDIRECTORY}/${ART_NAME}
-              ls .
-              cd $PROJECT_DIR
+              find ${BUILD_STAGINGDIRECTORY}
             fi
           fi
         }
         fetchArtifactURL
         downloadArtifactAndContinue
       
-  # - powershell: esy.cmd import-dependencies ./_import/
-  #   continueOnError: true
-  #   condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
-  #   displayName: "esy import-dependencies (build cache from CI cache)"
+  - powershell: esy.cmd import-dependencies
+    workingDirectory: '$(Build.StagingDirectory)'
+    continueOnError: true
+    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+    displayName: "esy import-dependencies if windows (build cache from CI cache)"
+    
+  - bash: esy import-dependencies
+    workingDirectory: '$(Build.StagingDirectory)'
+    continueOnError: true
+    condition: and(ne(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+    displayName: "esy import-dependencies if not windows (build cache from CI cache)"
 
   - bash: 'rm -rf _import'
     continueOnError: true
