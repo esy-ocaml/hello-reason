@@ -5,7 +5,10 @@ steps:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: '[Cache][Publish] Create cache directory'
 
+  # continueOnError because on windows it has a permission denied error but the
+  # export succeeds.
   - script: "esy export-dependencies"
+    continueOnError: true
     condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
     displayName: "esy export-dependencies"
 
