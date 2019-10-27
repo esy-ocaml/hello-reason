@@ -56,6 +56,7 @@ steps:
             if [[ -d ${ART_NAME}/_export ]]; then
               echo "Cached builds to import from ${ART_NAME}/_export in next CI step"
               ls ${ART_NAME}/_export
+              mv ${ART_NAME}/_export ${PROJECT_DIR}/_export
               # import-build allows importing before esy install runs.
               # unlike import-dependencies
               # if [ "$AGENT_OS" == "Windows_NT" ]; then
@@ -88,13 +89,11 @@ steps:
         downloadArtifactAndContinue
       
   - powershell: esy.cmd import-dependencies
-    workingDirectory: '$(Build.StagingDirectory)'
     continueOnError: true
     condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
     displayName: "esy import-dependencies if windows (build cache from CI cache)"
     
   - bash: esy import-dependencies
-    workingDirectory: '$(Build.StagingDirectory)'
     continueOnError: true
     condition: and(ne(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
     displayName: "esy import-dependencies if not windows (build cache from CI cache)"
