@@ -62,22 +62,23 @@ steps:
               # unlike import-dependencies
               echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
               if [ "$AGENT_OS" == "Windows_NT" ]; then
-                echo "Trying the cmd"
-                # Have to import the builds one by one in windows otherwise a
-                # glob will result in windows drive based file paths which tar
-                # cannot handle! Also need to use esy.cmd when running esy from
-                # within the cygwin environment that Azure provides.
-                cd ./_import
-                FILES=*
-                for f in $FILES
-                do
-                  echo "Trying to import $f"
-                  esy.cmd import-build "$f"
-                done
-                cd $PROJECT_DIR
-              else
-                esy import-build ./_import/*
-              fi
+                esy.cmd import-dependencies "_import"
+                #   echo "Trying the cmd"
+                #   # Have to import the builds one by one in windows otherwise a
+                #   # glob will result in windows drive based file paths which tar
+                #   # cannot handle! Also need to use esy.cmd when running esy from
+                #   # within the cygwin environment that Azure provides.
+                #   cd ./_import
+                #   FILES=*
+                #   for f in $FILES
+                #   do
+                #     echo "Trying to import $f"
+                #     esy.cmd import-build "$f"
+                #   done
+                #   cd $PROJECT_DIR
+            else
+              esy import-dependencies ./_import
+            fi
               
             else
               echo "No _export directory to import from build cache"
@@ -90,10 +91,10 @@ steps:
         fetchArtifactURL
         downloadArtifactAndContinue
       
-  - powershell: esy.cmd import-build ./_import/*
-    continueOnError: true
-    condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
-    displayName: "esy import-dependencies (build cache from CI cache)"
+  # - powershell: esy.cmd import-dependencies ./_import/
+  #   continueOnError: true
+  #   condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
+  #   displayName: "esy import-dependencies (build cache from CI cache)"
 
   - bash: 'rm -rf _import'
     continueOnError: true
