@@ -21,6 +21,24 @@ jobs:
         continueOnError: true
         condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
         displayName: "Print tar help"
+      # Needed so that the mingw tar doesn't shadow the system tar. See pipelines.yaml
+      # powershell doesn't need escaping of backslashes.
+      - powershell: Write-Host "##vso[task.setvariable variable=PATH;]C:\Windows\system32;${env:PATH}"
+        continueOnError: true
+        condition: eq(variables['AGENT.OS'], 'Windows_NT')
+        displayName: "Make sure windows/system32 is at front of path if windows"
+      - powershell: $Env:Path
+        continueOnError: true
+        condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+        displayName: "Print env in powershell"
+      - powershell: get-command tar
+        continueOnError: true
+        condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+        displayName: "Print where tar is located"
+      - powershell: tar --help
+        continueOnError: true
+        condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+        displayName: "Print tar help"
       - bash: |
           # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
           DESIRED_LEN="86"
