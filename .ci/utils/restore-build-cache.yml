@@ -76,13 +76,14 @@ steps:
                 #     esy.cmd import-build "$f"
                 #   done
                 #   cd $PROJECT_DIR
-            else
-              esy import-dependencies ./_import
-            fi
+              else
+                esy import-dependencies ./_import
+              fi
               
             else
               echo "No _export directory to import from build cache"
-              ls $BUILD_STAGINGDIRECTORY
+              echo "Here's the contents of build cache:"
+              find ${BUILD_STAGINGDIRECTORY}/${ART_NAME}
               ls .
               cd $PROJECT_DIR
             fi
