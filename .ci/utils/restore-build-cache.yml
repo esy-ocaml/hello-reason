@@ -57,27 +57,6 @@ steps:
               echo "Cached builds to import from ${ART_NAME}/_export in next CI step"
               ls ${ART_NAME}/_export
               mv ${ART_NAME}/_export ${PROJECT_DIR}/_export
-              # import-build allows importing before esy install runs.
-              # unlike import-dependencies
-              # if [ "$AGENT_OS" == "Windows_NT" ]; then
-              #   esy.cmd import-dependencies "_import"
-              #   #   echo "Trying the cmd"
-              #   #   # Have to import the builds one by one in windows otherwise a
-              #   #   # glob will result in windows drive based file paths which tar
-              #   #   # cannot handle! Also need to use esy.cmd when running esy from
-              #   #   # within the cygwin environment that Azure provides.
-              #   #   cd ./_import
-              #   #   FILES=*
-              #   #   for f in $FILES
-              #   #   do
-              #   #     echo "Trying to import $f"
-              #   #     esy.cmd import-build "$f"
-              #   #   done
-              #   #   cd $PROJECT_DIR
-              # else
-              #   esy import-dependencies ./_import
-              # fi
-              
             else
               echo "No _export directory to import from build cache"
               echo "Here's the contents of build cache:"
@@ -88,10 +67,12 @@ steps:
         fetchArtifactURL
         downloadArtifactAndContinue
       
-  - powershell: esy.cmd import-dependencies
-    continueOnError: true
-    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
-    displayName: "esy import-dependencies if windows (build cache from CI cache)"
+  # Uncomment as soon as https://github.com/esy/esy/pull/969 is resolved.
+  # For now, windows won't use build cache.
+  # - powershell: esy.cmd import-dependencies
+  #   continueOnError: true
+  #   condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+  #   displayName: "esy import-dependencies if windows (build cache from CI cache)"
     
   - bash: esy import-dependencies
     continueOnError: true
