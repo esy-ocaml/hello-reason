@@ -26,7 +26,6 @@ const bins =
     {}
   );
 
-console.log(bins);
 const packageJson = JSON.stringify(
   {
     name: mainPackageJson.name,
@@ -87,13 +86,17 @@ const placeholderFile = `:; echo "You need to have postinstall enabled"; exit $?
 @ECHO OFF
 ECHO You need to have postinstall enabled`;
 fs.mkdirSync(path.join(__dirname, "..", "_release", "bin"));
-const binPath = path.join(
-  __dirname,
-  "..",
-  "_release",
-  "bin",
-  mainPackageJson.esy.release.bin[0]
+
+Object.keys(bins).forEach(
+  name => {
+    const binPath = path.join(
+      __dirname,
+      "..",
+      "_release",
+      bins[name]
+    );
+  }
+  fs.writeFileSync(binPath, placeholderFile);
+  fs.chmodSync(binPath, 0777);
 );
 
-fs.writeFileSync(binPath, placeholderFile);
-fs.chmodSync(binPath, 0777);
