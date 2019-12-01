@@ -35,6 +35,10 @@ steps:
       cacheHitVar: CACHE_RESTORED
     displayName: '[Cache] esy packages'
 
+  - pwsh: 'New-Item $(ESY__CACHE_INSTALL_PATH) -ItemType Directory'
+    condition: eq(variables.CACHE_RESTORED, 'true')
+    displayName: '[Cache][Restore] Create esy cache directory'
+
   - pwsh: Move-Item -Path $(CACHE_FOLDER)/* -Destination $(ESY__CACHE_INSTALL_PATH)
     displayName: '[Cache][Restore] Move downloaded cache in place'
     condition: eq(variables.CACHE_RESTORED, 'true')
