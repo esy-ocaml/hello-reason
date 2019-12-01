@@ -68,9 +68,11 @@ no dependencies.
   - When asked how to configure the new pipeline, select the option to use
     existing configuration inside the repo.
 
-The CI is configured to build caches on the `master` branch, and also any
-branch named one of (`global`, `release-*`, `releases-*`). That means that pull
-requests to any branch with those names will be fast, once you have landed at
-least one commit to that branch. The first time you submit a pull request to
-one of those branches, the builds will be slow but then subsequent pull
-requests will be faster once a pull request is merged to it.
+The CI is configured to build caches on the `master` branch as well as any pull
+request run. Cache keys depend on the platform where builds are run (Linux,
+macOS or Windows) as well as the hash of the contents from `esy.lock` file.
+In case there is not a match for the current run key, there is a fallback to
+get the latest created key for the current run platform.
+Cache isolation and security applies thanks to Azure infrastructure. To know
+more about this, check the documentation about ["Cache isolation and
+security"](https://docs.microsoft.com/en-us/azure/devops/pipelines/caching/?view=azure-devops#cache-isolation-and-security).
