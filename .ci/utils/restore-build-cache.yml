@@ -29,7 +29,7 @@ steps:
       
   - task: Cache@2
     inputs:
-      key: cache_key_2 | esy | $(Agent.OS) | esy.lock/index.json
+      key: esy | $(Agent.OS) | esy.lock/index.json
       path: $(CACHE_FOLDER)
       restoreKeys: esy | $(Agent.OS)
       cacheHitVar: CACHE_RESTORED
