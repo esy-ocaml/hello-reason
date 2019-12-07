@@ -29,9 +29,10 @@ steps:
       
   - task: Cache@2
     inputs:
-      key: esy | $(Agent.OS) | esy.lock/index.json
+      # "v1" prefix added just to keep the ability to clear a cache without having to wait 7 days
+      key: v1 | esy | $(Agent.OS) | esy.lock/index.json
+      restoreKeys: v1 | esy | $(Agent.OS)
       path: $(CACHE_FOLDER)
-      restoreKeys: esy | $(Agent.OS)
       cacheHitVar: CACHE_RESTORED
     displayName: '[Cache] esy packages'
 
