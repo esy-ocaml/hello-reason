@@ -7,7 +7,7 @@ steps:
   - bash: |
       # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
       # The cache location is only needed for some issues that require to remove
-      # individual packages from cache (see ocamlfind below)
+      # individual packages from cache (e.g. ocamlfind below)
       DESIRED_LEN="86"
       # Note: This will need to change when upgrading esy version
       # that reenables long paths on windows.
