@@ -4,6 +4,3 @@ steps:
   - script: "esy export-dependencies"
     continueOnError: true
     displayName: "esy export-dependencies"
-    
-  - pwsh: Copy-Item -Path _export -Destination $(CACHE_FOLDER) -Recurse
-    displayName: '[Cache][Publish] Copy builds to be cached'

@@ -34,12 +34,9 @@ steps:
       # "v1" prefix added just to keep the ability to clear a cache without having to wait 7 days
       key: v1b | esy | $(Agent.OS) | esy.lock/index.json
       restoreKeys: v1b | esy | $(Agent.OS)
-      path: $(CACHE_FOLDER)
+      path: _export
       cacheHitVar: CACHE_RESTORED
     displayName: '[Cache] esy packages'
-
-  - bash: mv '${CACHE_FOLDER}/_export' '${PROJECT_DIR}/_export'
-    condition: eq(variables.CACHE_RESTORED, 'true')
 
   - powershell: esy.cmd import-dependencies
     continueOnError: true
