@@ -59,6 +59,7 @@ steps:
       script: |
         ls ${ESY__CACHE_INSTALL_PATH}
         rm -r ${ESY__CACHE_INSTALL_PATH}/opam__s__ocamlfind*
+        rm -r ${ESY__CACHE_INSTALL_PATH}/reason_native__s__rely*
 
   - bash: 'rm -rf _import'
     continueOnError: true
