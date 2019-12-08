@@ -32,21 +32,11 @@ steps:
   - task: Cache@2
     inputs:
       # "v1" prefix added just to keep the ability to clear a cache without having to wait 7 days
-      key: v1b | esy | $(Agent.OS) | esy.lock/index.json
-      restoreKeys: v1b | esy | $(Agent.OS)
+      key: v1c | esy | $(Agent.OS) | esy.lock/index.json
+      restoreKeys: v1c | esy | $(Agent.OS)
       path: _export
       cacheHitVar: CACHE_RESTORED
     displayName: '[Cache] esy packages'
-
-  - task: Bash@3
-    continueOnError: true
-    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
-    displayName: 'Remove rely prebuilts if on Windows'
-    inputs:
-      targetType: 'inline' # Optional. Options: filePath, inline
-      script: |
-        ls -la _export
-        rm -r _export/reason_native__s__rely*
 
   - powershell: esy.cmd import-dependencies
     continueOnError: true
@@ -69,7 +59,6 @@ steps:
       script: |
         ls ${ESY__CACHE_INSTALL_PATH}
         rm -r ${ESY__CACHE_INSTALL_PATH}/opam__s__ocamlfind*
-        rm -r ${ESY__CACHE_INSTALL_PATH}/reason_native__s__rely*
 
   - bash: 'rm -rf _import'
     continueOnError: true
