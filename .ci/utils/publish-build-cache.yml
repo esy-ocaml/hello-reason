@@ -3,4 +3,5 @@ steps:
   # export succeeds.
   - script: "esy export-dependencies"
     continueOnError: true
+    condition: eq(variables.CACHE_RESTORED, 'false')
     displayName: "esy export-dependencies"
