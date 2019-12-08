@@ -43,14 +43,14 @@ steps:
   - task: Bash@3
     continueOnError: true
     condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
-    displayName: 'Remove ocamlfind prebuilts if on Windows'
+    displayName: 'Remove ocamlfind, rely and console prebuilts if on Windows'
     inputs:
       targetType: 'inline' # Optional. Options: filePath, inline
       script: |
         ls _export
-        ls ${ESY__CACHE_INSTALL_PATH}
         rm -r _export/opam__s__ocamlfind*
         rm -r _export/reason_native__s__rely*
+        rm -r _export/reason_native__s__console*
 
   - powershell: esy.cmd import-dependencies
     continueOnError: true
