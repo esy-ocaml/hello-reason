@@ -57,6 +57,7 @@ steps:
     inputs:
       targetType: 'inline' # Optional. Options: filePath, inline
       script: |
+        ls _export
         ls ${ESY__CACHE_INSTALL_PATH}
         rm -r ${ESY__CACHE_INSTALL_PATH}/opam__s__ocamlfind*
 
