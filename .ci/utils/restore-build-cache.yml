@@ -1,8 +1,8 @@
 # The cache key is built up of the following:
-# We use a string that we can change to bust the cache
-# The string "esy"
-# The string for the OS
-# The hash of the lock file
+# - We use a string that we can change to bust the cache
+# - The string "esy"
+# - The string for the OS
+# - The hash of the lock file
 steps:
   - bash: |
       # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
