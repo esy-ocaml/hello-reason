@@ -1,4 +1,4 @@
-name: $(Build.SourceVersionMessage)
+name: Build npm release
 
 trigger:
   branches:
