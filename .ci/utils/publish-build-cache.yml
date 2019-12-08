@@ -4,6 +4,6 @@ steps:
   - script: "esy export-dependencies"
     continueOnError: true
     displayName: "esy export-dependencies"
-
-  - bash: pwd && ls _export/* && mv _export '$(CACHE_FOLDER)' && ls '$(CACHE_FOLDER)/_export/'
-    displayName: '[Cache][Publish] move export to cache dir'
+    
+  - pwsh: Copy-Item -Path _export -Destination $(CACHE_FOLDER) -Recurse
+    displayName: '[Cache][Publish] Copy builds to be cached'
