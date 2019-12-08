@@ -38,6 +38,16 @@ steps:
       cacheHitVar: CACHE_RESTORED
     displayName: '[Cache] esy packages'
 
+  - task: Bash@3
+    continueOnError: true
+    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
+    displayName: 'Remove rely prebuilts if on Windows'
+    inputs:
+      targetType: 'inline' # Optional. Options: filePath, inline
+      script: |
+        ls -la _export
+        rm -r _export/reason_native__s__rely*
+
   - powershell: esy.cmd import-dependencies
     continueOnError: true
     condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
