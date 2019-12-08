@@ -6,6 +6,8 @@
 steps:
   - bash: |
       # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
+      # The cache location is only needed for some issues that require to remove
+      # individual packages from cache (see ocamlfind below)
       DESIRED_LEN="86"
       # Note: This will need to change when upgrading esy version
       # that reenables long paths on windows.
@@ -26,20 +28,42 @@ steps:
       # Azure var esy__cache_install_path
       echo "##vso[task.setvariable variable=esy__cache_install_path]$THE_ESY__CACHE_INSTALL_PATH"
     displayName: '[Cache] calculate esy store path'
-      
+    
   - task: Cache@2
     inputs:
       # "v1" prefix added just to keep the ability to clear a cache without having to wait 7 days
-      key: v1 | esy | $(Agent.OS) | esy.lock/index.json
-      restoreKeys: v1 | esy | $(Agent.OS)
+      key: v1b | esy | $(Agent.OS) | esy.lock/index.json
+      restoreKeys: v1b | esy | $(Agent.OS)
       path: $(CACHE_FOLDER)
       cacheHitVar: CACHE_RESTORED
     displayName: '[Cache] esy packages'
 
-  - pwsh: 'New-Item $(ESY__CACHE_INSTALL_PATH) -ItemType Directory'
+  - bash: mv '${CACHE_FOLDER}/_export' '${PROJECT_DIR}/_export'
     condition: eq(variables.CACHE_RESTORED, 'true')
-    displayName: '[Cache][Restore] Create esy cache directory'
 
-  - pwsh: Move-Item -Path $(CACHE_FOLDER)/* -Destination $(ESY__CACHE_INSTALL_PATH)
-    displayName: '[Cache][Restore] Move downloaded cache in place'
+  - powershell: esy.cmd import-dependencies
+    continueOnError: true
+    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
+    displayName: "esy import-dependencies if windows (build cache from CI cache)"
+
+  - bash: esy import-dependencies
+    continueOnError: true
+    condition: and(ne(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
+    displayName: "esy import-dependencies if not windows (build cache from CI cache)"    
+
+  # Remove as soon as https://github.com/esy/esy/pull/969 is resolved.
+  # For now, windows won't use build cache for problematic package.
+  - task: Bash@3
+    continueOnError: true
+    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), eq(variables.CACHE_RESTORED, 'true'))
+    displayName: 'Remove ocamlfind prebuilts if on Windows'
+    inputs:
+      targetType: 'inline' # Optional. Options: filePath, inline
+      script: |
+        ls ${ESY__CACHE_INSTALL_PATH}
+        rm -r ${ESY__CACHE_INSTALL_PATH}/opam__s__ocamlfind*
+
+  - bash: 'rm -rf _import'
+    continueOnError: true
     condition: eq(variables.CACHE_RESTORED, 'true')
+    displayName: 'Remove import directory'

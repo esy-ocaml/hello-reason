@@ -12,6 +12,31 @@ jobs:
       ESY__CACHE_INSTALL_PATH: ${{ parameters.ESY__CACHE_INSTALL_PATH }}
       CACHE_FOLDER: $(Pipeline.Workspace)/cache
     steps: 
+      - powershell: $Env:Path
+        continueOnError: true
+        condition: eq(variables['AGENT.OS'], 'Windows_NT')
+        displayName: "Print env in powershell"
+      # Needed so that the mingw tar doesn't shadow the system tar. See
+      # pipelines.yaml. We need windows bsdtar from system32, not the mingw
+      # one. Note powershell doesn't need escaping of backslashes.
+      - powershell: Write-Host "##vso[task.setvariable variable=PATH;]C:\Windows\system32;${env:PATH}"
+        continueOnError: true
+        condition: eq(variables['AGENT.OS'], 'Windows_NT')
+        displayName: "Make sure windows/system32 is at front of path if windows"
+      - powershell: $Env:Path
+        continueOnError: true
+        condition: eq(variables['AGENT.OS'], 'Windows_NT')
+        displayName: "Print env in powershell"
+      - powershell: get-command tar
+        continueOnError: true
+        condition: eq(variables['AGENT.OS'], 'Windows_NT')
+        displayName: "Print where tar is located"
+      - powershell: tar --help
+        continueOnError: true
+        condition: eq(variables['AGENT.OS'], 'Windows_NT')
+        displayName: "Print tar help"
+      - bash: env
+        displayName: "Print environment"
       - template: utils/use-node.yml
       - template: utils/use-esy.yml
       - template: utils/restore-build-cache.yml

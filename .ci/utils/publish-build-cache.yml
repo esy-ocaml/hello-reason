@@ -1,3 +1,9 @@
 steps:
-  - pwsh: Copy-Item -Path $(ESY__CACHE_INSTALL_PATH) -Destination $(CACHE_FOLDER) -Recurse
-    displayName: '[Cache][Publish] Copy builds to be cached'
+  # continueOnError because on windows it has a permission denied error but the
+  # export succeeds.
+  - script: "esy export-dependencies"
+    continueOnError: true
+    displayName: "esy export-dependencies"
+
+  - bash: pwd && ls _export/* && mv _export '$(CACHE_FOLDER)' && ls '$(CACHE_FOLDER)/_export/'
+    displayName: '[Cache][Publish] move export to cache dir'
