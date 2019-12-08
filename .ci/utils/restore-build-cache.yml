@@ -49,7 +49,7 @@ steps:
       script: |
         ls _export
         ls ${ESY__CACHE_INSTALL_PATH}
-        # rm -r _export/opam__s__ocamlfind*
+        rm -r _export/opam__s__ocamlfind*
         rm -r _export/reason_native__s__rely*
 
   - powershell: esy.cmd import-dependencies
