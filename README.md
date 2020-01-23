@@ -74,4 +74,3 @@ requests to any branch with those names will be fast, once you have landed at
 least one commit to that branch. The first time you submit a pull request to
 one of those branches, the builds will be slow but then subsequent pull
 requests will be faster once a pull request is merged to it.
-
