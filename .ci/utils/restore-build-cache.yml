@@ -69,9 +69,14 @@ steps:
       
   - powershell: esy.cmd import-dependencies
     continueOnError: true
-    condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
+    condition: and(eq(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
     displayName: "esy import-dependencies if windows (build cache from CI cache)"
 
+  - bash: esy import-dependencies
+    continueOnError: true
+    condition: and(ne(variables['AGENT.OS'], 'Windows_NT'), and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch']))))
+    displayName: "esy import-dependencies if not windows (build cache from CI cache)"
+    
   - bash: 'rm -rf _import'
     continueOnError: true
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), and(succeeded(), ne(variables['Build.SourceBranch'], variables['System.PullRequest.TargetBranch'])))
