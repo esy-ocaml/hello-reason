@@ -32,6 +32,6 @@ steps:
     # for the target branch.
     inputs:
         pathToPublish: '$(Build.StagingDirectory)'
-        artifactName: 'cache-$(Agent.OS)-install'
+        artifactName: 'cache-$(Agent.OS)-install-$(esy__ci_cache_version)'
         parallel: true
         parallelCount: 8

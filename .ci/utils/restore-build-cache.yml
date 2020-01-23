@@ -17,7 +17,7 @@ steps:
         # If org name is reasonml then REST_BASE will be: https://dev.azure.com/reasonml/
         REST_BASE="${SYSTEM_TEAMFOUNDATIONCOLLECTIONURI}"
         PROJ="$SYSTEM_TEAMPROJECT"
-        ART_NAME="cache-${AGENT_OS}-install"
+        ART_NAME="cache-${AGENT_OS}-install-${ESY__CI_CACHE_VERSION}"
         fetchLatestBuild() {
           PREFIX="branchName=refs%2Fheads%2F"
           BRANCH=${PREFIX}${SYSTEM_PULLREQUEST_TARGETBRANCH}
@@ -63,10 +63,9 @@ steps:
               echo "Going to import builds from ${PROJECT_DIR}/_import in the next build step"
               if [ "$AGENT_OS" == "Windows_NT" ]; then
                  echo "Trying the cmd"
-                 # Have to import the builds one by one in windows otherwise a
-                 # glob will result in windows drive based file paths which tar
-                 # cannot handle! Also need to use esy.cmd when running esy from
-                 # within the cygwin environment that Azure provides.
+                 # Have to import the builds one by one in windows because
+                 # there is some file locking issue in esy on windows only when
+                 # importing many in parallel.
                  cd ./_import
                  FILES=*
                  for f in $FILES
