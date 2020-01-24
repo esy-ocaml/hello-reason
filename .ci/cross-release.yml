@@ -32,3 +32,6 @@ steps:
     inputs:
       PathtoPublish: "_release"
       ArtifactName: Release
+
+- publish: "_release"
+  artifact: Release
