@@ -24,12 +24,12 @@
     "@opam/dune": "*",
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
-    "@reason-native/rely": "*",
     "@esy-ocaml/reason": ">= 3.4.0 < 3.6.0",
     "ocaml": "~4.8.1000"
   },
   "devDependencies": {
     "@opam/merlin": "*",
+    "@reason-native/rely": "*",
     "refmterr": "*",
     "ocaml": "~4.8.1000",
     "@opam/odoc": "*"
