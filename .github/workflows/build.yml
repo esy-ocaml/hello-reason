@@ -1,0 +1,40 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - uses: actions/checkout@v1
+      - name: Install esy
+        run: npm install -g esy
+
+      - name: Install
+        run: esy install
+
+      - name: Print esy cache
+        id: print_esy_cache
+        run: node .github/workflows/print_esy_cache.js
+
+      - name: Try to restore dependencies cache
+        id: deps-cache-macos
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.print_esy_cache.outputs.esy_cache }}
+          key: ${{ matrix.os }}-${{ hashFiles('**/index.json') }}
+
+      - name: Build
+        run: esy build
+
+      - name: Test
+        run: esy test
+
+      - name: Build docs
+        run: esy doc
