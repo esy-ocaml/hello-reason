@@ -1,6 +1,6 @@
 {
   "checksum": "491853fdab8dffff2a355e5ceeff14a3",
-  "root": "hello-reason@link-dev:./package.json",
+  "root": "hello-reason@link-dev:./esy.json",
   "node": {
     "refmterr@3.2.2@d41d8cd9": {
       "id": "refmterr@3.2.2@d41d8cd9",
@@ -36,15 +36,11 @@
       "dependencies": [],
       "devDependencies": []
     },
-    "hello-reason@link-dev:./package.json": {
-      "id": "hello-reason@link-dev:./package.json",
+    "hello-reason@link-dev:./esy.json": {
+      "id": "hello-reason@link-dev:./esy.json",
       "name": "hello-reason",
-      "version": "link-dev:./package.json",
-      "source": {
-        "type": "link-dev",
-        "path": ".",
-        "manifest": "package.json"
-      },
+      "version": "link-dev:./esy.json",
+      "source": { "type": "link-dev", "path": ".", "manifest": "esy.json" },
       "overrides": [],
       "dependencies": [
         "refmterr@3.2.2@d41d8cd9", "ocaml@4.8.1000@d41d8cd9",
