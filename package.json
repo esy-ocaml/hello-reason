@@ -4,7 +4,9 @@
   "description": "Example Reason Esy Project",
   "license": "MIT",
   "esy": {
-    "build": "refmterr dune build -p #{self.name}",
+    "build": "dune build -p #{self.name}",
+    "buildDev": "refmterr dune build --root . --only-package #{self.name}",
+    "install": "esy-installer #{self.target_dir / 'default' / self.name '.install'}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
       "bin": [
@@ -23,13 +25,13 @@
     "@opam/dune": "*",
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
-    "@reason-native/rely": "*",
     "@esy-ocaml/reason": ">= 3.4.0 < 3.6.0",
-    "refmterr": "*",
     "ocaml": "~4.8.1000"
   },
   "devDependencies": {
     "@opam/merlin": "*",
+    "@reason-native/rely": "*",
+    "refmterr": "*",
     "ocaml": "~4.8.1000",
     "@opam/odoc": "*"
   }
