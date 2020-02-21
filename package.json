@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@opam/merlin": "*",
-    "@reason-native/rely": "*",
+    "@reason-native/rely": "3.2.0",
     "refmterr": "*",
     "ocaml": "~4.8.1000",
     "@opam/odoc": "*"
