@@ -17,7 +17,8 @@
     }
   },
   "scripts": {
-    "test": "esy x Hello",
+    "test": "esy b dune exec ./test/TestRunner.exe #{self.root}",
+    "run": "esy x Hello",
     "format": "esy dune build @fmt --auto-promote",
     "doc": "esy dune build @doc"
   },
