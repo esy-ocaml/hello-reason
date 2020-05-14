@@ -37,7 +37,16 @@ And test compiled executable (runs `scripts.tests` specified in
 
     % esy test
 
-Documentation for the libraries in the project can be generated with:
+You can format your code (runs `scripts.format` specified in `package.json`):
+
+    % esy format
+
+If you plan to add some .ml(i) files and want to enable formatting you can
+run: `esy add "@opam/ocamlformat"` and `esy format` will be automatically
+extended.
+
+Documentation for the libraries in the project can be generated with (runs
+`scripts.doc` specified in `package.json`):
 
     % esy doc
     % esy open '#{self.target_dir}/default/_doc/_html/index.html'

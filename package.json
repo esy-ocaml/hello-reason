@@ -18,6 +18,7 @@
   },
   "scripts": {
     "test": "esy x Hello",
+    "format": "esy dune build @fmt --auto-promote",
     "doc": "esy dune build @doc"
   },
   "dependencies": {
