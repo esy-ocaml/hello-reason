@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@opam/dune": "*",
+    "@opam/dune-configurator": "*",
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
     "@esy-ocaml/reason": ">= 3.4.0 < 3.6.0",
@@ -32,7 +33,7 @@
     "@opam/merlin": "*",
     "@reason-native/rely": "3.2.0",
     "refmterr": "*",
-    "ocaml": "~4.8.1000",
+    "ocaml": "~4.9",
     "@opam/odoc": "*"
   }
 }
