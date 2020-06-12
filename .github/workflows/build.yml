@@ -26,8 +26,13 @@ jobs:
         run: esy install
 
       - name: Print esy cache
+        uses: actions/github-script@v2
         id: print_esy_cache
-        run: node .github/workflows/print_esy_cache.js
+        with:
+          script: |
+            const path = require('path')
+            const scriptPath = path.resolve('.github/workflows/print_esy_cache.js')
+            require(scriptPath)(core)
 
       - name: Try to restore build cache
         id: deps-cache-macos

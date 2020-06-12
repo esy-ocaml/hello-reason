@@ -10,4 +10,5 @@ const esy3 = fs
   .filter(name => name.length > 0 && name[0] === "3")
   .sort()
   .pop();
-console.log(`::set-output name=esy_cache::${path.join(ESY_FOLDER, esy3, "i")}`);
+module.exports = exports = core =>
+    core.setOutput('esy_cache', path.join(ESY_FOLDER, esy3, "i"));
