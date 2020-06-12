@@ -9,7 +9,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1.4.2
         with:
           node-version: 12
       - uses: actions/checkout@v2
