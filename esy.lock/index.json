@@ -1,5 +1,5 @@
 {
-  "checksum": "4da145acd64d5ec9f7aeaff25f2dd781",
+  "checksum": "7aa393820af2ce112f4ab3bdf0b4c013",
   "root": "hello-reason@link-dev:./package.json",
   "node": {
     "refmterr@3.3.2@d41d8cd9": {
@@ -52,8 +52,7 @@
         "@opam/dune@opam:2.6.2@20433b4f", "@esy-ocaml/reason@3.6.0@d41d8cd9"
       ],
       "devDependencies": [
-        "refmterr@3.3.2@d41d8cd9", "ocaml@4.10.0@d41d8cd9",
-        "@reason-native/rely@3.2.1@d41d8cd9",
+        "refmterr@3.3.2@d41d8cd9", "@reason-native/rely@3.2.1@d41d8cd9",
         "@opam/odoc@opam:1.5.1@52a58c0b", "@opam/merlin@opam:3.3.6@7ca67060"
       ]
     },
