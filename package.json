@@ -32,7 +32,6 @@
     "@opam/merlin": "*",
     "@reason-native/rely": "*",
     "refmterr": "*",
-    "ocaml": "~4.10.0",
     "@opam/odoc": "*"
   }
 }
