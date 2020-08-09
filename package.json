@@ -25,14 +25,14 @@
     "@opam/dune": "*",
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
-    "@esy-ocaml/reason": ">= 3.4.0 < 3.6.0",
-    "ocaml": "~4.8.1000"
+    "@esy-ocaml/reason": ">= 3.6.0 < 4.0.0",
+    "ocaml": "~4.10.0"
   },
   "devDependencies": {
     "@opam/merlin": "*",
     "@reason-native/rely": "*",
     "refmterr": "*",
-    "ocaml": "~4.8.1000",
+    "ocaml": "~4.10.0",
     "@opam/odoc": "*"
   }
 }
