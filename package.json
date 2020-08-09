@@ -22,7 +22,7 @@
     "doc": "esy dune build @doc"
   },
   "dependencies": {
-    "@opam/dune": "*",
+    "@opam/dune": ">=1.11",
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
     "@esy-ocaml/reason": ">= 3.6.0 < 4.0.0",
