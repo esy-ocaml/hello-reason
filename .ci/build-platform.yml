@@ -34,7 +34,7 @@ jobs:
         displayName: "Print tar help"
       - bash: |
           # COMPUTE THE ESY INSTALL CACHE LOCATION AHEAD OF TIME
-          DESIRED_LEN="86"
+          DESIRED_LEN="85"
           # Note: This will need to change when upgrading esy version
           # that reenables long paths on windows.
           if [ "$AGENT_OS" == "Windows_NT" ]; then
