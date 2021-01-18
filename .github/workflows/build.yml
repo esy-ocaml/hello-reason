@@ -9,7 +9,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/setup-node@v1.4.3
+      - uses: actions/setup-node@v2
         with:
           node-version: 12
       - uses: actions/checkout@v2.3.2
@@ -56,7 +56,7 @@ jobs:
         run: esy build --release
 
       # Now that our core project build let builds others deps
-      - name: Build  dependencies
+      - name: Build dependencies
         if: steps.deps-cache.outputs.cache-hit != 'true'
         run: esy build-dependencies
 
