@@ -15,6 +15,10 @@ You need Esy, you can install the beta using [npm](https://npmjs.com):
 
 > NOTE: Make sure `esy --version` returns at least `0.5.4` for this project to build.
 
+On `Linux` you will need `m4` package to run `esy` build.
+
+    % sudo apt-get install m4
+
 Then run the `esy` command from this project root to install and build dependencies.
 
     % esy
