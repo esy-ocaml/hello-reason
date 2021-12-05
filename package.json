@@ -27,7 +27,7 @@
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
     "@esy-ocaml/reason": ">= 3.6.0 < 4.0.0",
-    "ocaml": "~4.10.0"
+    "ocaml": "~4.10.2"
   },
   "devDependencies": {
     "@opam/merlin": "*",
