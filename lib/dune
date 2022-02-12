@@ -2,5 +2,4 @@
  (name lib)
  (flags
   (-w -40 -w +26))
- (public_name hello-reason)
- (libraries pastel.lib))
+ (public_name hello-reason))

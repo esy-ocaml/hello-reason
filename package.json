@@ -5,7 +5,7 @@
   "license": "MIT",
   "esy": {
     "build": "dune build -p #{self.name}",
-    "buildDev": "refmterr dune build --promote-install-files --root . --only-package #{self.name}",
+    "buildDev": "dune build --promote-install-files --root . --only-package #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
       "rewritePrefix": true,
@@ -23,17 +23,13 @@
     "doc": "esy dune build @doc"
   },
   "dependencies": {
-    "@opam/dune": ">=2.6",
-    "@reason-native/console": "*",
-    "@reason-native/pastel": "*",
-    "@esy-ocaml/reason": ">= 3.6.0 < 4.0.0",
-    "ocaml": "~4.10.2"
+    "@opam/dune": "*",
+    "@opam/reason": "*",
+    "ocaml": "4.12.x"
   },
   "devDependencies": {
     "@opam/ocaml-lsp-server": "*",
-    "@opam/ocamlfind": "1.8.1",
-    "@reason-native/rely": "*",
-    "refmterr": "*",
+    "@opam/merlin": "*",
     "@opam/odoc": "*"
   }
 }
