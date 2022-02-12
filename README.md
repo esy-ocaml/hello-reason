@@ -36,7 +36,12 @@ again with the same simple `esy` command.
 
     % esy
 
-And test compiled executable (runs `scripts.tests` specified in
+And run compiled executable (runs `scripts.run` specified in
+  `package.json`):
+
+    % esy run
+
+You can test your code (runs `scripts.test` specified in
 `package.json`):
 
     % esy test
