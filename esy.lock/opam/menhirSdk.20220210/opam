@@ -22,9 +22,9 @@ conflicts: [
 synopsis: "Compile-time library for auxiliary tools related to Menhir"
 url {
   src:
-    "https://gitlab.inria.fr/fpottier/menhir/-/archive/20211128/archive.tar.gz"
+    "https://gitlab.inria.fr/fpottier/menhir/-/archive/20220210/archive.tar.gz"
   checksum: [
-    "md5=015354590ebce7911b073beae57e7731"
-    "sha512=76f998c114a29b390f05e7b62e396d6957e748be3bb7fe918893ab3471a7a907764de4610e392916553113df0c6b09aa570425dcf86c6a3e9e17b0ae36f3fe2b"
+    "md5=e3cef220f676c4b1c16cbccb174cefe3"
+    "sha512=3063fec1d8b9fe092c8461b0689d426c7fe381a2bf3fd258dc42ceecca1719d32efbb8a18d94ada5555c38175ea352da3adbb239fdbcbcf52c3a5c85a4d9586f"
   ]
 }
