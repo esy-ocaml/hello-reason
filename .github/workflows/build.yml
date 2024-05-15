@@ -13,61 +13,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install esy
         run: npm install -g esy
-
-      - name: Try to restore install cache
-        uses: actions/cache@v2.1.1
+      - uses: esy/github-action@d504f1813939f7821ce4c8ed855ddfcf8b390761
         with:
-          path: ~/.esy/source
-          key: source-${{ hashFiles('**/index.json') }}
-
-      - name: Install
-        run: esy install
-
-      - name: Print esy cache
-        uses: actions/github-script@v3.0.0
-        id: print_esy_cache
-        with:
-          script: |
-            const path = require('path')
-            const scriptPath = path.resolve('.github/workflows/print_esy_cache.js')
-            require(scriptPath)(core)
-
-      - name: Try to restore build cache
-        id: deps-cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ${{ steps.print_esy_cache.outputs.esy_cache }}
-          key: build-${{ matrix.os }}-${{ hashFiles('**/index.json') }}
-          restore-keys: build-${{ matrix.os }}-
-
-      # Here we use a low-level command. In real situation you don't have to
-      # but it is useful in CI as it split the log in GitHub UI.
-      # You can see at a glance if it is your projet or your deps that break.
-      #
-      # We also use --release flag to build less.
-      # This allow us to spot syntax/type error more quickly.
-      - name: Build release dependencies
-        if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: esy build-dependencies --release
-
-      - name: Build project in release
-        run: esy build --release
-
-      # Now that our core project build let builds others deps
-      - name: Build dependencies
-        if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: esy build-dependencies
-
-      - name: Build project
-        run: esy build
-
-      # Here we cleanup if we have a cache fail because we use restore-keys.
-      # restore-keys take the old store even on cache fail.
-      # So, we have deps we don't care anymore. We prune them.
-      - name: Clean global store
-        if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: esy cleanup .
-
+          source-cache-key: 20240515-1
+          cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
       - name: Test
         run: esy test
 
