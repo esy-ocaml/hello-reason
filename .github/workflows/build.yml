@@ -17,6 +17,11 @@ jobs:
         with:
           source-cache-key: 20240515-1
           cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
+      - uses: esy/github-action@d504f1813939f7821ce4c8ed855ddfcf8b390761
+        with:
+          source-cache-key: 20240515-1
+          cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
+          prepare-npm-artifacts-mode: true
       - name: Test
         run: esy test
 
