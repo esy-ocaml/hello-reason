@@ -17,7 +17,7 @@ jobs:
         with:
           source-cache-key: 20240515-1
           cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
-      - uses: esy/github-action@64bfaea37cda967398ae5ec1c16e1355e037b015
+      - uses: esy/github-action@9a7ca86458bb7f4e5b2792b825b48aa1969ace6c
         with:
           source-cache-key: 20240515-1
           cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
