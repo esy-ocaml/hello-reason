@@ -27,3 +27,12 @@ jobs:
 
       - name: Build docs
         run: esy doc
+
+  bundle:
+    runs-on: macos-latest
+    steps:
+      - uses: esy/github-action@baf273e85096dfd01f6f7c6ac83e63c86e2b719a
+        with:
+          source-cache-key: 20240515-1
+          cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
+          bundle-npm-artifacts-mode: true
