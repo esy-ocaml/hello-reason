@@ -43,4 +43,4 @@ jobs:
           source-cache-key: 20240515-1
           cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
           bundle-npm-artifacts-mode: true
-          artifact-ids: [ ${{needs.build.outputs.linux-x64}}, ${{needs.build.outputs.windows-x64}}, ${{needs.build.outputs.darwin-x64}},  ${{needs.build.outputs.darwin-arm64}}]
+          artifact-ids: '[ "${{needs.build.outputs.linux-x64}}", "${{needs.build.outputs.windows-x64}}", "${{needs.build.outputs.darwin-x64}}",  "${{needs.build.outputs.darwin-arm64}}" ]'
