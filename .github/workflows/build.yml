@@ -38,7 +38,7 @@ jobs:
     needs: build
     runs-on: macos-latest
     steps:
-      - uses: esy/github-action@0534a6f978a140eb2d157e27f8e825b2a3a35c30
+      - uses: esy/github-action@1ec8655ff810be262956e2bb39006eb1805ac3e8
         with:
           source-cache-key: 20240515-1
           cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
