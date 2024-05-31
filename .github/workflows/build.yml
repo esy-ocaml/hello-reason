@@ -8,68 +8,39 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+    outputs:
+      linux-x64: ${{ steps.prepare-npm-artifacts.ouputs.linux-x64 }}
+      windows-x64: ${{ steps.prepare-npm-artifacts.ouputs.windows-x64 }}
+      darwin-x64: ${{ steps.prepare-npm-artifacts.ouputs.darwin-x64 }}
+      darwin-arm64: ${{ steps.prepare-npm-artifacts.ouputs.darwin-arm64 }}
     steps:
       - uses: actions/setup-node@v4
       - uses: actions/checkout@v4
       - name: Install esy
         run: npm install -g esy
-
-      - name: Try to restore install cache
-        uses: actions/cache@v2.1.1
+      - uses: esy/github-action@d504f1813939f7821ce4c8ed855ddfcf8b390761
         with:
-          path: ~/.esy/source
-          key: source-${{ hashFiles('**/index.json') }}
-
-      - name: Install
-        run: esy install
-
-      - name: Print esy cache
-        uses: actions/github-script@v3.0.0
-        id: print_esy_cache
+          source-cache-key: 20240515-1
+          cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
+      - uses: esy/github-action@444f3afcddbe04e2c5994f3e3624001dae88d539
+        id: prepare-npm-artifacts
         with:
-          script: |
-            const path = require('path')
-            const scriptPath = path.resolve('.github/workflows/print_esy_cache.js')
-            require(scriptPath)(core)
-
-      - name: Try to restore build cache
-        id: deps-cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ${{ steps.print_esy_cache.outputs.esy_cache }}
-          key: build-${{ matrix.os }}-${{ hashFiles('**/index.json') }}
-          restore-keys: build-${{ matrix.os }}-
-
-      # Here we use a low-level command. In real situation you don't have to
-      # but it is useful in CI as it split the log in GitHub UI.
-      # You can see at a glance if it is your projet or your deps that break.
-      #
-      # We also use --release flag to build less.
-      # This allow us to spot syntax/type error more quickly.
-      - name: Build release dependencies
-        if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: esy build-dependencies --release
-
-      - name: Build project in release
-        run: esy build --release
-
-      # Now that our core project build let builds others deps
-      - name: Build dependencies
-        if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: esy build-dependencies
-
-      - name: Build project
-        run: esy build
-
-      # Here we cleanup if we have a cache fail because we use restore-keys.
-      # restore-keys take the old store even on cache fail.
-      # So, we have deps we don't care anymore. We prune them.
-      - name: Clean global store
-        if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: esy cleanup .
-
+          source-cache-key: 20240515-1
+          cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
+          prepare-npm-artifacts-mode: true
       - name: Test
         run: esy test
 
       - name: Build docs
         run: esy doc
+
+  bundle:
+    needs: build
+    runs-on: macos-latest
+    steps:
+      - uses: esy/github-action@1ec8655ff810be262956e2bb39006eb1805ac3e8
+        with:
+          source-cache-key: 20240515-1
+          cache-key: ${{ hashFiles('esy.lock/index.json') }}-20240515-1
+          bundle-npm-artifacts-mode: true
+          artifact-names: '[ "npm-release-darwin-arm64", "npm-release-linux-x64", "npm-release-win32-x64" ]'
